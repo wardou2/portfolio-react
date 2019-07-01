@@ -95,7 +95,7 @@ export default class JobEdit extends Component {
         </Form.Field>
         <Form.Field>
           <label>Summary</label>
-          <input name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
+          <textarea name="summary" value={this.state.content.summary} onChange={this.handleChange}/>
         </Form.Field>
         <Form.Group>
           <Form.Field>
