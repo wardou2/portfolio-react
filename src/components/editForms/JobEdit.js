@@ -55,7 +55,7 @@ export default class JobEdit extends Component {
     this.setState({
       content:{
         ...this.state.content,
-        responsibilities: skillCopy
+        skills_used: skillCopy
       }
     })
   }
