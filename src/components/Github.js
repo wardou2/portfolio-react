@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Image, Button} from 'semantic-ui-react'
+import {Card, Image, Button, Divider} from 'semantic-ui-react'
 
 
 const fancyName = (name) => {
@@ -15,6 +15,7 @@ const Github = (props) => {
         target="_blank" className="card-height">
 
         <Card.Header>       {_name}             </Card.Header>
+        <Divider />
         <Image size='medium' src={github.img_url} />
         <Card.Meta>         {github.summary}        </Card.Meta>
         <Card.Description>  {github.contribution}   </Card.Description>

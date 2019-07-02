@@ -20,7 +20,7 @@ const Githubs = (props) => {
       <Grid.Row columns={16}>
         <Grid.Column width={2}></Grid.Column>
         <Grid.Column width={12}>
-          <Card.Group centered>
+          <Card.Group centered >
             <br />
             {githubs.map( (github, index) => {
               return <Github github={github} startEdit={props.startEdit}
