@@ -57,12 +57,32 @@
 }
 
 .image-circle-portrait {
+  position: absolute;
   border-radius: 50%;
   /* border: 1px solid teal; */
   max-width: 500px;
   max-height: 500px;
   min-width: 500px;
   min-height: 500px;
+}
+
+.image-circle-portrait-alt {
+
+  border-radius: 50%;
+  /* border: 1px solid teal; */
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 500px;
+  min-height: 500px;
+  -webkit-transition: opacity 5s ease-in-out;
+  -moz-transition: opacity 5s ease-in-out;
+  -o-transition: opacity 5s ease-in-out;
+  transition: opacity 5s ease-in-out;
+  opacity: 0;
+}
+
+.image-circle-portrait-alt:hover {
+  opacity:1;
 }
 
 .image-circle-small-job {

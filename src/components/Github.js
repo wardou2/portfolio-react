@@ -14,7 +14,7 @@ const Github = (props) => {
     <Card.Content href={`https://github.com/${github.repo_owner}/${github.repo_name}`}
         target="_blank" className="card-height">
 
-        <Image floated='right' size='mini' src={github.img_url} />
+        <Image floated='right' size='small' src={github.img_url} />
         <Card.Header>       {_name}             </Card.Header>
         <Card.Meta>         {github.summary}        </Card.Meta>
         <Card.Description>  {github.contribution}   </Card.Description>
