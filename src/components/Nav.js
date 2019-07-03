@@ -7,8 +7,8 @@ const Nav = (props) => {
     return (
         <Menu secondary floated="right">
             <Link className="item font-heading" to="/#skills">  SKILLS</Link>
-            <Link className="item font-heading" to="/#jobs">    JOBS</Link>
             <Link className="item font-heading" to="/#github"> GITHUB</Link>
+            <Link className="item font-heading" to="/#jobs">    JOBS</Link>
             <Link className="item font-heading" to="/#contact"> CONTACT</Link>
             <Link className="item" to="/" onClick={props.openSidebar}><Icon name="bars"/></Link>
         </Menu>

@@ -21,7 +21,7 @@ const Content = (props) => {
 
       <Grid.Row key="name" id="name">
         <Grid.Column>
-          <NamePicIntro 
+          <NamePicIntro
             user={props.currentUser}    editing={props.editing}
             startEdit={props.startEdit} loggedIn={props.loggedIn}/>
         </Grid.Column>
@@ -29,7 +29,7 @@ const Content = (props) => {
 
       <Grid.Row key="about" id="about">
         <Grid.Column>
-          <AboutMe 
+          <AboutMe
             user={props.currentUser}     editing={props.editing}
             startEdit={props.startEdit}  loggedIn={props.loggedIn}
           />
@@ -38,7 +38,7 @@ const Content = (props) => {
 
       <Grid.Row key="skills" id="skills">
         <Grid.Column>
-          <Skills 
+          <Skills
             skills={props.skills}          editing={props.editing}
             startEdit={props.startEdit}    loggedIn={props.loggedIn}
             shiftOrder={props.shiftOrder}  startNew={props.startNew}
@@ -47,21 +47,21 @@ const Content = (props) => {
         </Grid.Column>
       </Grid.Row>
 
+      <Grid.Row key="github" id="github">
+      <Grid.Column>
+      <Githubs githubs={props.githubs}  editing={props.editing}
+      startEdit={props.startEdit}     loggedIn={props.loggedIn}
+      shiftOrder={props.shiftOrder}   startNew={props.startNew}
+      user={props.currentUser}
+      />
+      </Grid.Column>
+      </Grid.Row>
+
       <Grid.Row key="jobs" id="jobs">
         <Grid.Column>
           <Jobs jobs={props.jobs}         editing={props.editing}
             startEdit={props.startEdit}   loggedIn={props.loggedIn}
             shiftOrder={props.shiftOrder} startNew={props.startNew}
-            user={props.currentUser}
-          />
-        </Grid.Column>
-      </Grid.Row>
-
-      <Grid.Row key="github" id="github">
-        <Grid.Column>
-          <Githubs githubs={props.githubs}  editing={props.editing}
-            startEdit={props.startEdit}     loggedIn={props.loggedIn}
-            shiftOrder={props.shiftOrder}   startNew={props.startNew}
             user={props.currentUser}
           />
         </Grid.Column>

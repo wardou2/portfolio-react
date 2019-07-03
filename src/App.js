@@ -6,8 +6,8 @@ import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
-// const apiURL = 'http://localhost:3000/api/v1/'
+// const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
+const apiURL = 'http://localhost:3000/api/v1/'
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
@@ -55,7 +55,11 @@ class App extends React.Component {
       //automated fetch
       anchors.forEach( a => {
         fetch( apiURL + a ).then( res => res.json() )
-        .then( json => this.setState({[a]: json}))
+        .then( json => {
+          console.log(json);
+          this.setState({[a]: json})
+        }
+        )
       })
       //special fetch for users
       fetch( apiURL + 'users').then( res => res.json() )

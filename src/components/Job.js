@@ -16,16 +16,7 @@ const Job = (props) => {
             <Card.Meta>       SUMMARY               </Card.Meta>
             <Card.Description>{props.job.summary}   </Card.Description>
           </Card.Content>
-          <Card.Content>
-            <Card.Meta>       SKILLS USED           </Card.Meta>
-            <Card.Description>
-              <List bulleted>
-                {props.job.skills_used.map(skill => {
-                    return <List.Item key={skill} className="font_size_small">{skill}</List.Item>
-                  })}
-              </List>
-            </Card.Description>
-          </Card.Content>
+
           <Card.Content>
           <Card.Meta>         RESPONSIBILITIES      </Card.Meta>
             <Card.Description>
@@ -48,3 +39,14 @@ const Job = (props) => {
 }
 
 export default Job
+
+// <Card.Content>
+//   <Card.Meta>       SKILLS USED           </Card.Meta>
+//   <Card.Description>
+//     <List bulleted>
+//       {props.job.skills_used.map(skill => {
+//           return <List.Item key={skill} className="font_size_small">{skill}</List.Item>
+//         })}
+//     </List>
+//   </Card.Description>
+// </Card.Content>
