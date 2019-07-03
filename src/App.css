@@ -78,11 +78,12 @@
   -moz-transition: opacity 5s ease-in-out;
   -o-transition: opacity 5s ease-in-out;
   transition: opacity 5s ease-in-out;
+  transition-delay: 2s;
   opacity: 0;
 }
 
 .image-circle-portrait-alt:hover {
-  opacity:1;
+  opacity:.99;
 }
 
 .image-circle-small-job {

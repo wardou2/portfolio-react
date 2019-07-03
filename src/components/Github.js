@@ -1,24 +1,49 @@
 import React from 'react'
-import {Card, Image, Button, Divider} from 'semantic-ui-react'
+import {Card, Image, Button, Divider, List} from 'semantic-ui-react'
 
 
-const fancyName = (name) => {
-  return name.split('-').map( word => word[0].toUpperCase() + word.slice(1)).join(" ")
+// const fancyName = (url) => {
+//   let lastIndex = url.lastIndexOf('/')
+//   let name = url.slice(lastIndex+1)
+//   return name.split('-').map( word => word[0].toUpperCase() + word.slice(1)).join(" ")
+//   }
+
+const displayLinks = (github) => {
+  if (github.repo_url_back && github.demo_url) {
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Front End Repo</a> | <a href={github.repo_url_back} target="_blank">Back End Repo</a> | <a href={github.demo_url} target="_blank">Demo</a></div>
+  } else if (github.repo_url_back) {
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Front End Repo</a> | <a href={github.repo_url_back} target="_blank">Back End Repo</a></div>
+  } else if (github.demo_url) {
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Github Repo</a> | <a href={github.demo_url} target="_blank">Demo</a></div>
+  } else {
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Github Repo</a></div>
   }
+}
 
 const Github = (props) => {
   let github = props.github
-  let _name = fancyName(github.repo_name)
   return (
-  <Card raised className="corner-sharp">
-    <Card.Content href={`https://github.com/${github.repo_owner}/${github.repo_name}`}
+  <Card raised className="corner-sharp" textAlign='left'>
+    <Card.Content
         target="_blank" className="card-height">
 
-        <Card.Header>       {_name}             </Card.Header>
+        <Card.Header style={{marginBottom: '10px'}} size="medium" textAlign="center">{github.name}</Card.Header>
+        <Image size="medium" style={{display: 'block', margin: 'auto', marginBottom: '10px'}} rounded
+        src={github.img_url}
+        />
+        <Card.Meta>
+          <div>{displayLinks(github)}</div>
+        </Card.Meta>
         <Divider />
-        <Image size='medium' src={github.img_url} />
+        <br></br>
         <Card.Meta>         {github.summary}        </Card.Meta>
-        <Card.Description>  {github.contribution}   </Card.Description>
+        <Divider />
+        <Card.Description> <List relaxed bulleted>
+          {github.contribution.map(con => {
+            return <List.Item>{con}</List.Item>
+          })}
+          </List>
+        </Card.Description>
 
     </Card.Content>
       {props.loggedIn
