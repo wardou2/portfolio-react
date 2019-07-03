@@ -67,15 +67,15 @@ export default class GithubCreate extends Component {
         </Form.Field>
         <Form.Field>
           <label>Front End Repo URL</label>
-          <input name="repo_url_front" value={this.state.content.repo_url} onChange={this.handleChange}/>
+          <input name="repo_url_front" value={this.state.content.repo_url_front} onChange={this.handleChange}/>
         </Form.Field>
         <Form.Field>
           <label>Back End Repo URL</label>
-          <input name="repo_url_back" value={this.state.content.repo_url} onChange={this.handleChange}/>
+          <input name="repo_url_back" value={this.state.content.repo_url_back} onChange={this.handleChange}/>
         </Form.Field>
         <Form.Field>
           <label>Demo URL</label>
-          <input name="demo_url" value={this.state.content.repo_url} onChange={this.handleChange}/>
+          <input name="demo_url" value={this.state.content.demo_url} onChange={this.handleChange}/>
         </Form.Field>
         <Form.Field>
           <label>Summary</label>

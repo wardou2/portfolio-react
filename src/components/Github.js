@@ -35,7 +35,6 @@ const Github = (props) => {
           <div>{displayLinks(github)}</div>
         </Card.Meta>
         <Divider />
-        <br></br>
         <Card.Meta>         {github.summary}        </Card.Meta>
         <Divider />
         <Card.Description> <List relaxed bulleted>
