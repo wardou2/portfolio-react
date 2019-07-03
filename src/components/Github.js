@@ -27,7 +27,7 @@ const Github = (props) => {
     <Card.Content
         target="_blank" className="card-height">
 
-        <Card.Header style={{marginBottom: '10px'}} size="medium" textAlign="center">{github.name}</Card.Header>
+        <Card.Header style={{marginBottom: '10px'}} textAlign="center">{github.name}</Card.Header>
         <Image size="medium" style={{display: 'block', margin: 'auto', marginBottom: '10px'}} rounded
         src={github.img_url}
         />

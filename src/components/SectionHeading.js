@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Icon, Button} from 'semantic-ui-react'
+import {Grid, Icon, Button, Header} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 const SectionHeading = (props) => {
@@ -25,7 +25,7 @@ const SectionHeading = (props) => {
 
         <Grid.Column width={14} verticalAlign="middle">
           <div>
-            <span className="font-size-large heading-font">{props.text}</span>
+            <Header size='large'>{props.text}</Header>
           </div>
         </Grid.Column>
       </Grid.Row>
