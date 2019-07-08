@@ -13,12 +13,20 @@ const SectionHeading = (props) => {
 
       <Grid.Row className={`${props.user.color_theme}-heading`}>
         <Grid.Column width={2} textAlign="center" verticalAlign="middle">
-          <Button.Group>
+          <Button.Group icon size='mini'>
             {(props.sectionEdit && props.loggedIn && localStorage.getItem('jwt') !== '')
-              ? <Button icon="edit" onClick={props.startEdit}/>
+              ? (<Button  compact onClick={props.startEdit}>
+                  <Button.Content>
+                    <Icon name="edit" />
+                  </Button.Content>
+                </Button>)
               : null}
             {(props.sectionNew && props.loggedIn && localStorage.getItem('jwt') !== '')
-              ? <Button icon="add circle" onClick={props.startNew}/>
+              ? (<Button compact onClick={props.startNew}>
+                  <Button.Content>
+                    <Icon name="add circle" />
+                  </Button.Content>
+                </Button>)
               : null}
           </Button.Group>
         </Grid.Column>

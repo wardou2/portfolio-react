@@ -10,13 +10,13 @@ import {Card, Image, Button, Divider, List} from 'semantic-ui-react'
 
 const displayLinks = (github) => {
   if (github.repo_url_back && github.demo_url) {
-    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Front End Repo</a> | <a href={github.repo_url_back} target="_blank">Back End Repo</a> | <a href={github.demo_url} target="_blank">Demo</a></div>
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank" rel="noopener noreferrer">Front End Repo</a> | <a href={github.repo_url_back} target="_blank" rel="noopener noreferrer">Back End Repo</a> | <a href={github.demo_url} target="_blank" rel="noopener noreferrer">Demo</a></div>
   } else if (github.repo_url_back) {
-    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Front End Repo</a> | <a href={github.repo_url_back} target="_blank">Back End Repo</a></div>
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank" rel="noopener noreferrer">Front End Repo</a> | <a href={github.repo_url_back} target="_blank" rel="noopener noreferrer">Back End Repo</a></div>
   } else if (github.demo_url) {
-    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Github Repo</a> | <a href={github.demo_url} target="_blank">Demo</a></div>
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank" rel="noopener noreferrer">Github Repo</a> | <a href={github.demo_url} target="_blank" rel="noopener noreferrer">Demo</a></div>
   } else {
-    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank">Github Repo</a></div>
+    return <div style={{textAlign: 'center'}}><a href={github.repo_url_front} target="_blank" rel="noopener noreferrer">Github Repo</a></div>
   }
 }
 
