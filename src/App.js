@@ -1,13 +1,15 @@
 import './App.css';
 import React from 'react'
-import { Icon, Menu, Segment, Sidebar, Sticky } from 'semantic-ui-react'
+import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button } from 'semantic-ui-react'
+
+import NavLinks from './components/NavLinks'
 import Content from './components/Content'
 import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
-// const apiURL = 'http://localhost:3000/api/v1/'
+// const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
+const apiURL = 'http://localhost:3002/api/v1/'
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
@@ -69,7 +71,8 @@ class App extends React.Component {
       })
     }
 
-    openSidebar = () => {
+    toggleSidebar = () => {
+      // open or close sidebar & clear editingType
       this.setState({
         sidebarVisible: !this.state.sidebarVisible,
         editingType: ''
@@ -254,13 +257,17 @@ class App extends React.Component {
         return(
           <Sidebar.Pushable as={Segment} className="fix-sidebar">
             <Sticky >
-              <Sidebar as={Menu} animation='overlay'
-                 direction='right' icon='labeled'
-                 inverted vertical
-                 visible={this.state.sidebarVisible}
-                 width='wide'
-               >
-                 <Menu.Item as='a' onClick={this.openSidebar}>
+                <Sidebar
+                    animation='overlay'
+                    as={Menu}
+                    direction='right'
+                    icon='labeled'
+                    inverted
+                    vertical
+                    visible={this.state.sidebarVisible}
+                    width='wide'
+                  >
+                 <Menu.Item as='a' onClick={this.toggleSidebar}>
                    <Icon name='bars' size="mini"/>
                    Close
                  </Menu.Item>
@@ -272,17 +279,23 @@ class App extends React.Component {
                     }
                  </Menu.Item>
 
-                 <Editor
-                  editorDisabled={this.state.editorDisabled}
-                  editing={this.state.editing}
-                  creatingType={this.state.creatingType}
-                  creating={this.state.creating}
-                  handleSubmit={this.handleSubmit}
-                  handleCreate={this.handleCreate}
-                  editingType={this.state.editingType}
-                  startEdit={this.startEdit}
-                  handleDelete={this.handleDelete}
-                 />
+                 {this.state.editingType === '' && this.state.creatingType === ''
+                  ? <NavLinks toggleSidebar={this.toggleSidebar}/>
+                  : <Menu.Item>
+                      <Editor
+                        creating=       {this.state.creating}
+                        creatingType=   {this.state.creatingType}
+                        editing=        {this.state.editing}
+                        editorDisabled= {this.state.editorDisabled}
+                        editingType=    {this.state.editingType}
+                        handleCreate=   {this.handleCreate}
+                        handleDelete=   {this.handleDelete}
+                        handleSubmit=   {this.handleSubmit}
+                        shiftOrder=     {this.shiftOrder}
+                        startEdit=      {this.startEdit}
+                      />
+                    </Menu.Item>
+                  }
 
                </Sidebar>
              </Sticky>
@@ -290,7 +303,7 @@ class App extends React.Component {
               <Segment basic className={this.state.currentUser.color_theme}>
 
                 <Content
-                  openSidebar={this.openSidebar}
+                  toggleSidebar={this.toggleSidebar}
                   startEdit={this.startEdit}
                   shiftOrder={this.shiftOrder}
                   startNew={this.startNew}
@@ -305,6 +318,16 @@ class App extends React.Component {
                   editing={this.state.editing}
                   loggedIn={this.state.loggedIn}
                 />
+
+                <Confirm
+                  cancelButton={<Button>Go Back</Button>}
+                  confirmButton={<Button negative>Delete</Button>}
+                  onCancel={_ => this.setState({confirmOpen: false})}
+                  onConfirm={_ => this.confirmDelete(this.state.contentToDelete)}
+                  open={this.state.confirmOpen}
+                  size='mini'
+                  />
+
 
               </Segment>
             </Sidebar.Pusher>

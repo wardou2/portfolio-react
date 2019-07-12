@@ -1,9 +1,31 @@
 import React from 'react'
-import { Card, List, Button, Image } from 'semantic-ui-react';
+import { Card, List, Button, Image, Icon } from 'semantic-ui-react';
 
 const Job = (props) => {
   return(
-        <Card raised className="corner-sharp">
+        <Card raised className="corner-sharp text font-size-medium">
+            {props.loggedIn
+              ? <Card.Content>
+                  <Button
+                    onClick={_ => props.shiftOrder('jobs', props.job, false)}
+                    icon={<Icon name='up arrow' />}
+                    size='large'
+                    />
+                  <Button
+                    onClick={_ => props.shiftOrder('jobs', props.job, true)}
+                    icon={<Icon name='down arrow' />}
+                    size='large'
+                    />
+                  <Button
+                    onClick={_ => props.startEdit(props.job, 'jobs')}
+                    floated='right'
+                    color='linkedin'
+                    icon={<Icon name='edit' />}
+                    size='large'
+                    />
+                </Card.Content>
+              : null
+            }
           <Card.Content>
             <Image spaced floated="left" size="tiny" src={props.job.img_url} alt={props.job.company}/>
             <Card.Header>   {props.job.title}     </Card.Header>
@@ -27,26 +49,18 @@ const Job = (props) => {
               </List>
             </Card.Description>
           </Card.Content>
-          {props.loggedIn ?
-            <Card.Content extra>
-              <Button onClick={_ => props.startEdit(props.job, 'jobs')} icon="pencil square"/>
-              <Button type="button" onClick={_ => props.shiftOrder('jobs', props.job, false)} icon="up arrow"/>
-              <Button type="button" onClick={_ => props.shiftOrder('jobs', props.job, true)} icon="down arrow"/>
-            </Card.Content>
-            : null}
+          <Card.Content>
+            <Card.Meta>       SKILLS USED           </Card.Meta>
+            <Card.Description>
+              <List bulleted>
+                {props.job.skills_used.map(skill => {
+                        return <List.Item key={skill} className="font_size_small">{skill}</List.Item>
+                      })}
+                  </List>
+                </Card.Description>
+              </Card.Content>
         </Card>
     )
 }
 
 export default Job
-
-// <Card.Content>
-//   <Card.Meta>       SKILLS USED           </Card.Meta>
-//   <Card.Description>
-//     <List bulleted>
-//       {props.job.skills_used.map(skill => {
-//           return <List.Item key={skill} className="font_size_small">{skill}</List.Item>
-//         })}
-//     </List>
-//   </Card.Description>
-// </Card.Content>

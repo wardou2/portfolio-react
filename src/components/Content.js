@@ -15,7 +15,7 @@ const Content = (props) => {
 
       <Grid.Row key="nav" id="nav">
         <Grid.Column>
-          <Nav openSidebar={props.openSidebar} loggedIn={props.loggedIn}/>
+          <Nav toggleSidebar={props.toggleSidebar} loggedIn={props.loggedIn}/>
         </Grid.Column>
       </Grid.Row>
 
@@ -71,6 +71,7 @@ const Content = (props) => {
         <Grid.Column>
           <Contact user={props.currentUser} editing={props.editing}
             startEdit={props.startEdit}     loggedIn={props.loggedIn}
+            text='Contact'
           />
         </Grid.Column>
       </Grid.Row>

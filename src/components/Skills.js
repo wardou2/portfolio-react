@@ -1,8 +1,10 @@
 import React from 'react'
 import { Grid, Popup, Image, Button } from 'semantic-ui-react'
+import Skill from './Skill'
+
 import SectionHeading from './SectionHeading'
 
-const Skills = (props) => {
+const SkillsOld = (props) => {
   let skills = props.skills.sort( (a,b) => a.order_id - b.order_id )
   let columns=1
   props.loggedIn ? columns = skills.length*2+3 : columns = skills.length + 2
@@ -20,7 +22,7 @@ const Skills = (props) => {
     <Grid.Row columns={columns} verticalAlign="middle" textAlign="center">
       <Grid.Column>{' '}</Grid.Column>
       {skills.map( (skill, index) => {
-        return(<> 
+        return(<>
               {props.loggedIn && index === 0
                 ? <Grid.Column textAlign="center"><Button type="button" onClick={_ => props.shiftOrder('skills', skill, false)} circular icon="long arrow alternate left"/></Grid.Column>
                 : null}
@@ -46,5 +48,57 @@ const Skills = (props) => {
   </Grid>
   )
 }
+
+class Skills extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      modalVisible: false
+    }
+  }
+
+  toggleModal() {
+    this.setState({modalVisible: !this.state.modalVisible})
+  }
+
+  render() {
+    if (!this.props.skills) {
+      return <span className="font-heading font-size-large">Loading...</span>
+    } else {
+      let skills = this.props.skills.sort( (a,b) => a.order_id - b.order_id )
+      return (
+      <div>
+        <SectionHeading text="Primary Skillsets"
+          editing={this.props.editing}
+          loggedIn={this.props.loggedIn}
+          sectionEdit={false}
+          sectionNew={true}
+          startEdit={_ => this.props.startEdit(skills, 'skills')}
+          startNew={_ => this.props.startNew('skills')}
+          user={this.props.user}
+        />
+
+        <Grid columns={16} stackable centered>
+          <Grid.Column />
+          <Grid columns={'equal'} textAlign="center" stackable centered>
+            {skills.map( (skill, index) => {
+              return(
+                <Skill skill={skill}
+                  index={index}
+                  key={skill.name+index}
+                  loggedIn={this.props.loggedIn}
+                  startEdit={this.props.startEdit}
+                />)
+            })}
+          </Grid>
+          <Grid.Column />
+        </Grid>
+        <br />
+      </div>
+      )
+    }
+  }
+}
+
 
 export default Skills

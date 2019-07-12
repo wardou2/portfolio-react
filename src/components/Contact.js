@@ -11,34 +11,27 @@ const parsePhoneNum = (num) => {
 const Contact = (props) => {
 
     return (
-
       <Grid columns={16}>
-        <Grid.Column width={16}>{' '}</Grid.Column>
-
-        <Grid.Column width={16} textAlign="center">
-          <Link to="/#nav"><Icon name="triangle up"/></Link>
-        </Grid.Column>
-
-        <Grid.Row className={`${props.user.color_theme}-heading`}>
-          <Grid.Column width={2} textAlign="center" verticalAlign="middle">
-          </Grid.Column>
-
-          <Grid.Column width={2} >
-            <div>
-              <span className="font-size-large heading-font">Contact</span>
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4} textAlign="right">
-            <a href={"mailto:"+props.user.email}>{props.user.email}</a>
-          </Grid.Column>
-          <Grid.Column width={4} textAlign="left">
-            <a href={"tel: +1"+ props.user.phone}>+1 {parsePhoneNum(props.user.phone)}</a>
-          </Grid.Column>
-
-          <Grid.Column width={16}>{' '}</Grid.Column>
-          <Grid.Column width={16}>{' '}</Grid.Column>
+        <Grid.Row />
+        <Grid.Row centered>
+            <Link to='/#nav'><Icon name='triangle up'/></Link>
         </Grid.Row>
-      </Grid>
+
+        <Grid.Row className={`${props.user.color_theme}-heading`} verticalAlign='middle'>
+            <Grid.Column width={1} />
+            <Grid.Column width={4} verticalAlign='middle'>
+                <span className='font-size-large font-heading'>{props.text}</span>
+            </Grid.Column>
+
+            <Grid.Column width={3} className='text' textAlign='center'>
+                <a href={'mailto:'+props.user.email}>{props.user.email}</a>
+            </Grid.Column>
+            <Grid.Column width={3} className='text' textAlign='center'>
+                <a href={'tel: +1'+ props.user.phone}>+1 {parsePhoneNum(props.user.phone)}</a>
+            </Grid.Column>
+            <Grid.Column width={5} />
+        </Grid.Row>
+    </Grid>
     )
 }
 
