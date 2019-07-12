@@ -25,12 +25,12 @@ const Githubs = (props) => {
                   <Grid.Row columns={16}>
                     <Grid.Column width={2}></Grid.Column>
                     <Grid.Column width={12}>
-                      <Card.Group centered itemsPerRow={2}>
+                      <Card.Group centered doubling itemsPerRow={2}>
                         <br />
                         {githubs.map( (github, index) => {
                           return <Github github={github} startEdit={props.startEdit}
                                     loggedIn={props.loggedIn} shiftOrder={props.shiftOrder}
-                                    key={github.repo_name + index}
+                                    key={index}
                           />
                         })}
                       </Card.Group>
