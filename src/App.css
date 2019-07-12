@@ -234,23 +234,28 @@ img {
 /* Super Secret Evil */
 
 .image-circle-portrait {
-  position: absolute;
+  position: relative;
+  object-fit: contain;
+
   border-radius: 50%;
   /* border: 1px solid teal; */
-  max-width: 500px;
+  /* max-width: 500px;
   max-height: 500px;
-  min-width: 500px;
-  min-height: 500px;
+  min-width: 500px; */
+  min-height: 250px;
+  max-height: 500px;
 }
 
 .image-circle-portrait-alt {
 
   border-radius: 50%;
+  position: absolute;
+  object-fit: contain;
   /* border: 1px solid teal; */
-  max-width: 500px;
+
   max-height: 500px;
-  min-width: 500px;
-  min-height: 500px;
+  min-height: 250px;
+
   -webkit-transition: opacity 5s ease-in-out;
   -moz-transition: opacity 5s ease-in-out;
   -o-transition: opacity 5s ease-in-out;
