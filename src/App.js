@@ -8,8 +8,8 @@ import Login from './components/Login'
 import LoggedIn from './components/LoggedIn'
 import Editor from './components/Editor'
 
-const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
-// const apiURL = 'http://localhost:3000/api/v1/'
+// const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/'
+const apiURL = 'http://localhost:3000/api/v1/'
 const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
@@ -42,8 +42,8 @@ let anchors = keys.slice(0, 7)
 // are the names of the resources we want to fetch.
 
 class App extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = DEFAULT_STATE
     }
 
@@ -55,19 +55,31 @@ class App extends React.Component {
         this.setState({loggedIn: false})
       }
       //automated fetch
-      anchors.forEach( a => {
-        fetch( apiURL + a ).then( res => res.json() )
-        .then( json => {
-          console.log(json);
-          this.setState({[a]: json})
-        }
-        )
-      })
       //special fetch for users
       fetch( apiURL + 'users').then( res => res.json() )
       .then( users => {
-        this.setState({users})
-        this.setState({currentUser: users[0]})
+        if (this.props.sandbox) {
+          users.forEach(user => {
+            if(user.username === 'sandbox') this.setState({currentUser: user})
+          })
+          let ev = document.createEvent('Event')
+          this.login(ev, 'sandbox', 'sandbox')
+        } else {
+          this.setState({currentUser: users[0]})
+        }
+      })
+      .then( res => {
+        anchors.forEach( a => {
+          fetch( apiURL + a ).then( res => res.json() )
+          .then( json => {
+            console.log(json);
+            let relevantObjs = []
+            json.forEach(ob => {
+              if (ob.user_id === this.state.currentUser.id) { relevantObjs.push(ob) }
+            })
+            this.setState({[a]: relevantObjs})
+          })
+        })
       })
     }
 

@@ -1,18 +1,33 @@
 import React from "react"
 import { render } from "react-dom"
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
 import "semantic-ui-css/semantic.css"
 import * as serviceWorker from './serviceWorker'
 import ScrollHandler from './components/ScrollHandler'
 import App from './App'
 
+var sandbox = ''
+
 const RoutedApp = () => (
     <Router>
-      <ScrollHandler>
-        <App />
-      </ScrollHandler>
+      <Route path='/sandbox' component={Sandbox} />
+      <Route path='/' component={MainApp}
+      />
     </Router>
   );
+
+function Sandbox() {
+  sandbox = true
+  return null
+}
+
+function MainApp() {
+  return (
+    <ScrollHandler>
+      <App sandbox = {sandbox}/>
+    </ScrollHandler>
+  )
+}
 
 render(<RoutedApp />, document.getElementById('root'))
 
