@@ -243,7 +243,8 @@ class App extends React.Component {
         let creatingTypeCopy=this.state.creatingType
         this.setState({
           [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
-          creatingType: ''
+          creatingType: '',
+          sidebarVisible: false
         })
       })
     }
