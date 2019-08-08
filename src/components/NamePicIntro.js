@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container } from 'semantic-ui-react'
 
 
 const NamePicIntroOLD = (props) => {
@@ -77,11 +77,9 @@ const NamePicIntro = (props) => {
                   })}
                </span>
             </Grid.Column>
-            <Grid.Column width={6} textAlign="left">
-               <img className="image-circle-portrait"
+            <Grid.Column width={6} textAlign="center">
+              <img className="image-circle-portrait"
                   src={props.user.img_url} alt="portrait"></img>
-               <img className="image-circle-portrait-alt"
-                  src={'/images/CHEESIN_DRGN.jpg'} alt="DRGN"></img>
             </Grid.Column>
             <Grid.Column width={2}></Grid.Column>
          </Grid>

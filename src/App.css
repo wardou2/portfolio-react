@@ -234,27 +234,25 @@ img {
 /* Super Secret Evil */
 
 .image-circle-portrait {
-  position: relative;
+  max-width: 100%;
+  min-width: 50%;
+  height: auto;
   object-fit: contain;
-
-  border-radius: 50%;
-  /* border: 1px solid teal; */
-  /* max-width: 500px;
-  max-height: 500px;
-  min-width: 500px; */
-  min-height: 250px;
-  max-height: 500px;
 }
 
-.image-circle-portrait-alt {
+/* .image-circle-portrait-container {
+  position:  relative;
+  object-fit: cover;
 
-  border-radius: 50%;
+} */
+
+/* .image-circle-portrait-alt {
+
   position: absolute;
-  object-fit: contain;
-  /* border: 1px solid teal; */
+  border-radius: 50%;
+  flex: auto;
 
-  max-height: 500px;
-  min-height: 250px;
+  border: 1px solid teal;
 
   -webkit-transition: opacity 5s ease-in-out;
   -moz-transition: opacity 5s ease-in-out;
@@ -262,7 +260,7 @@ img {
   transition: opacity 5s ease-in-out;
   transition-delay: 2s;
   opacity: 0;
-}
+} */
 
 .image-circle-portrait-alt:hover {
   opacity:.99;
