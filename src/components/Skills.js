@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, Popup, Image, Button } from 'semantic-ui-react'
+
 import Skill from './Skill'
 import SectionHeading from './SectionHeading'
 class Skills extends React.Component {
@@ -9,6 +10,7 @@ class Skills extends React.Component {
       modalVisible: false
     }
   }
+
   render() {
     if (!this.props.skills) {
       return <span className="font-heading font-size-large">Loading...</span>
