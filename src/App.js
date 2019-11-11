@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react'
-import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button } from 'semantic-ui-react'
+import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button, TransitionablePortal } from 'semantic-ui-react'
 
 import NavLinks from './components/NavLinks'
 import Content from './components/Content'
@@ -33,7 +33,7 @@ const DEFAULT_STATE = {
   editing: {},
   editingType: '',
   creating: {},
-  creatingType: ''
+  creatingType: '',
 }
 
 let keys = Object.keys(DEFAULT_STATE)
@@ -106,12 +106,12 @@ class App extends React.Component {
             localStorage.setItem('jwt', json.jwt)
             localStorage.setItem('username', username)
             this.setState({username: username, loggedIn: true})
+            this.setState({sidebarVisible: false})
           } else {
             localStorage.removeItem('jwt')
             localStorage.removeItem('username')
             this.setState({username: '', message: json.message, loggedIn: false})
           }
-          this.setState({sidebarVisible: false})
         })
   }
 

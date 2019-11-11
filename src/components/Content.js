@@ -18,6 +18,7 @@ const Content = (props) => {
           <Nav toggleSidebar={props.toggleSidebar} loggedIn={props.loggedIn}/>
         </Grid.Column>
       </Grid.Row>
+      
 
       <Grid.Row key="name" id="name">
         <Grid.Column>
