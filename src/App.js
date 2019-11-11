@@ -1,6 +1,14 @@
 import './App.css';
 import React from 'react'
-import { Icon, Menu, Segment, Sidebar, Sticky, Confirm, Button, TransitionablePortal } from 'semantic-ui-react'
+import {
+  Icon,
+  Menu,
+  Segment,
+  Sidebar,
+  Sticky,
+  Confirm,
+  Button
+} from 'semantic-ui-react'
 
 import NavLinks from './components/NavLinks'
 import Content from './components/Content'
@@ -14,7 +22,9 @@ const HEADERS_AUTH = {
   'Authorization': 'Bearer ' + localStorage.jwt,
   'Content-Type': 'application/json'
 }
-const HEADERS_NOAUTH = { 'Content-Type': 'application/json'}
+const HEADERS_NOAUTH = {
+  'Content-Type': 'application/json'
+}
 
 const DEFAULT_STATE = {
   jobs: [],
@@ -43,46 +53,59 @@ let anchors = keys.slice(0, 7)
 
 class App extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = DEFAULT_STATE
+      super(props)
+      this.state = DEFAULT_STATE
     }
 
     componentDidMount() {
       //check for logged in user
       if (!!localStorage.jwt && !!localStorage.username) {
-        this.setState({loggedIn: true, username: localStorage.username})
+        this.setState({
+          loggedIn: true,
+          username: localStorage.username
+        })
       } else {
-        this.setState({loggedIn: false})
+        this.setState({
+          loggedIn: false
+        })
       }
       //automated fetch
       //special fetch for users
-      fetch( apiURL + 'users').then( res => res.json() )
-      .then( users => {
-        if (this.props.sandbox) {
-          users.forEach(user => {
-            if(user.username === 'sandbox') this.setState({currentUser: user})
-          })
-          let ev = document.createEvent('Event')
-          this.login(ev, 'sandbox', 'sandbox')
-        } else {
-          localStorage.removeItem('jwt')
-          localStorage.removeItem('username')
-          this.setState({currentUser: users[0]})
-        }
-      })
-      .then( res => {
-        anchors.forEach( a => {
-          fetch( apiURL + a ).then( res => res.json() )
-          .then( json => {
-            console.log(json);
-            let relevantObjs = []
-            json.forEach(ob => {
-              if (ob.user_id === this.state.currentUser.id) { relevantObjs.push(ob) }
+      fetch(apiURL + 'users').then(res => res.json())
+        .then(users => {
+          if (this.props.sandbox) {
+            users.forEach(user => {
+              if (user.username === 'sandbox') this.setState({
+                currentUser: user
+              })
             })
-            this.setState({[a]: relevantObjs})
+            let ev = document.createEvent('Event')
+            this.login(ev, 'sandbox', 'sandbox')
+          } else {
+            localStorage.removeItem('jwt')
+            localStorage.removeItem('username')
+            this.setState({
+              currentUser: users[0]
+            })
+          }
+        })
+        .then(res => {
+          anchors.forEach(a => {
+            fetch(apiURL + a).then(res => res.json())
+              .then(json => {
+                console.log(json);
+                let relevantObjs = []
+                json.forEach(ob => {
+                  if (ob.user_id === this.state.currentUser.id) {
+                    relevantObjs.push(ob)
+                  }
+                })
+                this.setState({
+                  [a]: relevantObjs
+                })
+              })
           })
         })
-      })
     }
 
     toggleSidebar = () => {
@@ -95,25 +118,41 @@ class App extends React.Component {
 
     login = (ev, username, password) => {
       ev.preventDefault()
-      this.setState({message: ''})
+      this.setState({
+        message: ''
+      })
       fetch(apiURL + 'login', {
-        method: 'POST',
-        headers: HEADERS_NOAUTH,
-        body: JSON.stringify({ user: {username, password}})
-      }).then( res => res.json() )
-        .then( json => {
+          method: 'POST',
+          headers: HEADERS_NOAUTH,
+          body: JSON.stringify({
+            user: {
+              username,
+              password
+            }
+          })
+        }).then(res => res.json())
+        .then(json => {
           if (json && json.jwt) {
             localStorage.setItem('jwt', json.jwt)
             localStorage.setItem('username', username)
-            this.setState({username: username, loggedIn: true})
-            this.setState({sidebarVisible: false})
+            this.setState({
+              username: username,
+              loggedIn: true
+            })
+            this.setState({
+              sidebarVisible: false
+            })
           } else {
             localStorage.removeItem('jwt')
             localStorage.removeItem('username')
-            this.setState({username: '', message: json.message, loggedIn: false})
+            this.setState({
+              username: '',
+              message: json.message,
+              loggedIn: false
+            })
           }
         })
-  }
+    }
 
     logOut = () => {
       this.setState({
@@ -156,44 +195,63 @@ class App extends React.Component {
     }
 
     handleSubmit = (content) => {
-      fetch(apiURL+this.state.editingType+'/'+content.id, {
-        method: "PATCH",
-        headers: HEADERS_AUTH,
-        body: JSON.stringify({...content})
-      })
-      .then(res => res.json())
-      .catch(error => console.log(error))
-      .then(json => {
-        let editingTypeCopy=this.state.editingType
-        switch(editingTypeCopy) {
-          case "users": this.setState({users: [json], currentUser: json})
-            break
-          case "skills": let skillsCopy = this.state.skills.map(skill => {
-              return (skill.id === content.id) ? content : skill
-            })
-            this.setState({skills: skillsCopy})
-            break
-          case "jobs": let jobsCopy = this.state.jobs.map(job => {
-              return (job.id === content.id) ? content : job
-            })
-            this.setState({jobs: jobsCopy})
-            break
-          case "githubs": let githubsCopy = this.state.githubs.map(github => {
-              return (github.id === content.id) ? content : github
-            })
-            this.setState({githubs: githubsCopy})
-            break
-          default: return null
-        }
-        this.setState({sidebarVisible: false, editingType: ''})
-      })
+      fetch(apiURL + this.state.editingType + '/' + content.id, {
+          method: "PATCH",
+          headers: HEADERS_AUTH,
+          body: JSON.stringify({
+            ...content
+          })
+        })
+        .then(res => res.json())
+        .catch(error => console.log(error))
+        .then(json => {
+          let editingTypeCopy = this.state.editingType
+          switch (editingTypeCopy) {
+            case "users":
+              this.setState({
+                users: [json],
+                currentUser: json
+              })
+              break
+            case "skills":
+              let skillsCopy = this.state.skills.map(skill => {
+                return (skill.id === content.id) ? content : skill
+              })
+              this.setState({
+                skills: skillsCopy
+              })
+              break
+            case "jobs":
+              let jobsCopy = this.state.jobs.map(job => {
+                return (job.id === content.id) ? content : job
+              })
+              this.setState({
+                jobs: jobsCopy
+              })
+              break
+            case "githubs":
+              let githubsCopy = this.state.githubs.map(github => {
+                return (github.id === content.id) ? content : github
+              })
+              this.setState({
+                githubs: githubsCopy
+              })
+              break
+            default:
+              return null
+          }
+          this.setState({
+            sidebarVisible: false,
+            editingType: ''
+          })
+        })
     }
 
     shiftOrder = (incomingGroup, item, next) => {
-      let group = this.state[incomingGroup].sort( (a,b) => a.order_id - b.order_id )
-      let orderIds = group.map( s => s.order_id )
-      let curIndex = orderIds.indexOf( item.order_id )
-      let maxPos = orderIds.length-1
+      let group = this.state[incomingGroup].sort((a, b) => a.order_id - b.order_id)
+      let orderIds = group.map(s => s.order_id)
+      let curIndex = orderIds.indexOf(item.order_id)
+      let maxPos = orderIds.length - 1
       let move = next ? 1 : -1 //if next is true, shift up; else shift down
 
       // console.log('shifting:', {incomingGroup, item, next})
@@ -214,141 +272,238 @@ class App extends React.Component {
         orderIds[curIndex + move] = t
       }
 
-      group.forEach( (item, index) => {
+      group.forEach((item, index) => {
         if (item.order_id !== orderIds[index]) {
           // console.log(item.name + " changed, fetching")
           item.order_id = orderIds[index]
-          fetch(apiURL + '/' + incomingGroup + '/'+ item.id, {
-            method: "PATCH",
-            headers: HEADERS_AUTH,
-            body: JSON.stringify({...item})
-          }).then( res => res.json() )
-            .then( console.log )
+          fetch(apiURL + '/' + incomingGroup + '/' + item.id, {
+              method: "PATCH",
+              headers: HEADERS_AUTH,
+              body: JSON.stringify({
+                ...item
+              })
+            }).then(res => res.json())
+            .then(console.log)
         }
       })
-      this.setState({ [group]: group })
+      this.setState({
+        [group]: group
+      })
     }
 
     handleCreate = (content) => {
-      content['order_id']=this.state[this.state.creatingType].length
-      fetch(apiURL+this.state.creatingType, {
-        method: "POST",
-        headers: HEADERS_AUTH,
-        body: JSON.stringify({
-          ...content,
-          user_id: this.state.currentUser.id
+      content['order_id'] = this.state[this.state.creatingType].length
+      fetch(apiURL + this.state.creatingType, {
+          method: "POST",
+          headers: HEADERS_AUTH,
+          body: JSON.stringify({
+            ...content,
+            user_id: this.state.currentUser.id
+          })
         })
-      })
-      .then(res => res.json())
-      .catch(error => console.log(error))
-      .then(json => {
-        let creatingTypeCopy=this.state.creatingType
-        this.setState({
-          [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
-          creatingType: '',
-          sidebarVisible: false
+        .then(res => res.json())
+        .catch(error => console.log(error))
+        .then(json => {
+          let creatingTypeCopy = this.state.creatingType
+          this.setState({
+            [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
+            creatingType: '',
+            sidebarVisible: false
+          })
         })
-      })
     }
 
     handleDelete = (content) => {
-      fetch(apiURL+this.state.editingType+'/'+content.id, {
-        method: "DELETE",
-        headers: HEADERS_AUTH
-      })
-      .then(res => res.json())
-      .then(json => {
-        let copy = this.state[this.state.editingType]
-        copy.splice(copy.findIndex(el => el.id === json.id),1)
-        this.setState({
-          [this.state.editingType]: copy,
-          editingType: '',
-          sidebarVisible: false
+      fetch(apiURL + this.state.editingType + '/' + content.id, {
+          method: "DELETE",
+          headers: HEADERS_AUTH
         })
-      })
+        .then(res => res.json())
+        .then(json => {
+          let copy = this.state[this.state.editingType]
+          copy.splice(copy.findIndex(el => el.id === json.id), 1)
+          this.setState({
+            [this.state.editingType]: copy,
+            editingType: '',
+            sidebarVisible: false
+          })
+        })
     }
 
     render() {
-        return(
-          <Sidebar.Pushable as={Segment} className="fix-sidebar">
-            <Sticky >
-                <Sidebar
-                    animation='overlay'
-                    as={Menu}
-                    direction='right'
-                    icon='labeled'
-                    inverted
-                    vertical
-                    visible={this.state.sidebarVisible}
-                    width='wide'
-                  >
-                 <Menu.Item as='a' onClick={this.toggleSidebar}>
-                   <Icon name='bars' size="mini"/>
-                   Close
-                 </Menu.Item>
+        return ( <
+          Sidebar.Pushable as = {
+            Segment
+          }
+          className = "fix-sidebar" >
+          <
+          Sticky >
+          <
+          Sidebar animation = 'overlay'
+          as = {
+            Menu
+          }
+          direction = 'right'
+          icon = 'labeled'
+          inverted vertical visible = {
+            this.state.sidebarVisible
+          }
+          width = 'wide' >
+          <
+          Menu.Item as = 'a'
+          onClick = {
+            this.toggleSidebar
+          } >
+          <
+          Icon name = 'bars'
+          size = "mini" / >
+          Close <
+          /Menu.Item>
 
-                 <Menu.Item as='a'>
-                    {(this.state.loggedIn && localStorage.getItem('jwt'))
-                      ? <LoggedIn username={this.state.username} logOut={this.logOut}/>
-                      : <Login login={this.login} message={this.state.message}/>
-                    }
-                 </Menu.Item>
+          <
+          Menu.Item as = 'a' > {
+            (this.state.loggedIn && localStorage.getItem('jwt')) ?
+            < LoggedIn username = {
+              this.state.username
+            }
+            logOut = {
+              this.logOut
+            }
+            /> :
+              < Login login = {
+              this.login
+            }
+            message = {
+              this.state.message
+            }
+            />
+          } <
+          /Menu.Item>
 
-                 {this.state.editingType === '' && this.state.creatingType === ''
-                  ? <NavLinks toggleSidebar={this.toggleSidebar}/>
-                  : <Menu.Item>
-                      <Editor
-                        creating=       {this.state.creating}
-                        creatingType=   {this.state.creatingType}
-                        editing=        {this.state.editing}
-                        editorDisabled= {this.state.editorDisabled}
-                        editingType=    {this.state.editingType}
-                        handleCreate=   {this.handleCreate}
-                        handleDelete=   {this.handleDelete}
-                        handleSubmit=   {this.handleSubmit}
-                        shiftOrder=     {this.shiftOrder}
-                        startEdit=      {this.startEdit}
-                      />
-                    </Menu.Item>
-                  }
+          {
+            this.state.editingType === '' && this.state.creatingType === '' ?
+              < NavLinks toggleSidebar = {
+                this.toggleSidebar
+              }
+            />: < Menu.Item >
+              <
+              Editor
+            creating = {
+              this.state.creating
+            }
+            creatingType = {
+              this.state.creatingType
+            }
+            editing = {
+              this.state.editing
+            }
+            editorDisabled = {
+              this.state.editorDisabled
+            }
+            editingType = {
+              this.state.editingType
+            }
+            handleCreate = {
+              this.handleCreate
+            }
+            handleDelete = {
+              this.handleDelete
+            }
+            handleSubmit = {
+              this.handleSubmit
+            }
+            shiftOrder = {
+              this.shiftOrder
+            }
+            startEdit = {
+              this.startEdit
+            }
+            /> <
+            /Menu.Item>
+          }
 
-               </Sidebar>
-             </Sticky>
-             <Sidebar.Pusher dimmed={false}>
-              <Segment basic className={this.state.currentUser.color_theme}>
+          <
+          /Sidebar> <
+          /Sticky> <
+          Sidebar.Pusher dimmed = {
+            false
+          } >
+          <
+          Segment basic className = {
+            this.state.currentUser.color_theme
+          } >
 
-                <Content
-                  toggleSidebar={this.toggleSidebar}
-                  startEdit={this.startEdit}
-                  shiftOrder={this.shiftOrder}
-                  startNew={this.startNew}
-                  jobs={this.state.jobs}
-                  githubs={this.state.githubs}
-                  interests={this.state.interests}
-                  skills={this.state.skills}
-                  honors={this.state.honors}
-                  links={this.state.links}
-                  users={this.state.users}
-                  currentUser= {this.state.currentUser}
-                  editing={this.state.editing}
-                  loggedIn={this.state.loggedIn}
-                />
+          <
+          Content toggleSidebar = {
+            this.toggleSidebar
+          }
+          startEdit = {
+            this.startEdit
+          }
+          shiftOrder = {
+            this.shiftOrder
+          }
+          startNew = {
+            this.startNew
+          }
+          jobs = {
+            this.state.jobs
+          }
+          githubs = {
+            this.state.githubs
+          }
+          interests = {
+            this.state.interests
+          }
+          skills = {
+            this.state.skills
+          }
+          honors = {
+            this.state.honors
+          }
+          links = {
+            this.state.links
+          }
+          users = {
+            this.state.users
+          }
+          currentUser = {
+            this.state.currentUser
+          }
+          editing = {
+            this.state.editing
+          }
+          loggedIn = {
+            this.state.loggedIn
+          }
+          />
 
-                <Confirm
-                  cancelButton={<Button>Go Back</Button>}
-                  confirmButton={<Button negative>Delete</Button>}
-                  onCancel={_ => this.setState({confirmOpen: false})}
-                  onConfirm={_ => this.confirmDelete(this.state.contentToDelete)}
-                  open={this.state.confirmOpen}
-                  size='mini'
-                  />
+          <
+          Confirm cancelButton = {
+            < Button > Go Back < /Button>}
+            confirmButton = {
+              < Button negative > Delete < /Button>}
+              onCancel = {
+                _ => this.setState({
+                  confirmOpen: false
+                })
+              }
+              onConfirm = {
+                _ => this.confirmDelete(this.state.contentToDelete)
+              }
+              open = {
+                this.state.confirmOpen
+              }
+              size = 'mini' /
+              >
 
 
-              </Segment>
-            </Sidebar.Pusher>
-          </Sidebar.Pushable>
-        )
-    }
-}
+              <
+              /Segment> <
+              /Sidebar.Pusher> <
+              /Sidebar.Pushable>
+            )
+          }
+        }
 
-export default App
+        export default App
