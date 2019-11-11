@@ -93,7 +93,6 @@ class App extends React.Component {
           anchors.forEach(a => {
             fetch(apiURL + a).then(res => res.json())
               .then(json => {
-                console.log(json);
                 let relevantObjs = []
                 json.forEach(ob => {
                   if (ob.user_id === this.state.currentUser.id) {

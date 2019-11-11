@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Popup, Image, Button } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
 import Skill from './Skill'
 import SectionHeading from './SectionHeading'

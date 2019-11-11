@@ -1,6 +1,6 @@
 import React from "react"
 import { render } from "react-dom"
-import { BrowserRouter as Router, Route, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import "semantic-ui-css/semantic.css"
 import * as serviceWorker from './serviceWorker'
 import ScrollHandler from './components/ScrollHandler'
