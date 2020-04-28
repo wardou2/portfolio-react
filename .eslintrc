@@ -1,0 +1,16 @@
+{
+    "plugins": ["prettier"],
+    "extends": ["airbnb-base", "react-app", "plugin:prettier/recommended"],
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "prettier/prettier": "error"
+    }
+}
