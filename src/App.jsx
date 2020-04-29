@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import './App.css';
 import React from 'react';
 import {
@@ -269,7 +268,6 @@ class App extends React.Component {
 
         if (curIndex === maxPos && next) {
             const t = orderIds[maxPos];
-            // eslint-disable-next-line prefer-destructuring
             orderIds[maxPos] = orderIds[0];
             orderIds[0] = t;
         } else if (curIndex === 0 && !next) {
@@ -284,7 +282,6 @@ class App extends React.Component {
 
         group.forEach((groupItem, index) => {
             if (groupItem.order_id !== orderIds[index]) {
-                // eslint-disable-next-line no-param-reassign
                 groupItem.order_id = orderIds[index];
                 fetch(`${apiURL}/${incomingGroup}/${groupItem.id}`, {
                     method: 'PATCH',
@@ -301,7 +298,6 @@ class App extends React.Component {
     };
 
     handleCreate = (content) => {
-        // eslint-disable-next-line no-param-reassign
         content.order_id = this.state[this.state.creatingType].length;
         fetch(apiURL + this.state.creatingType, {
             method: 'POST',
