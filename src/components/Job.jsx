@@ -4,7 +4,7 @@ import { Card, List, Button, Image, Icon } from 'semantic-ui-react';
 const Job = (props) => {
     return (
         <Card raised className="corner-sharp text font-size-medium">
-            {props.loggedIn ? (
+            {props.loggedIn && (
                 <Card.Content>
                     <Button
                         onClick={(_) =>
@@ -28,7 +28,7 @@ const Job = (props) => {
                         size="large"
                     />
                 </Card.Content>
-            ) : null}
+            )}
             <Card.Content>
                 <Image
                     spaced
@@ -46,45 +46,51 @@ const Job = (props) => {
                     {props.job.end_year ? props.job.end_year : 'Present'}
                 </Card.Meta>
             </Card.Content>
-            <Card.Content>
-                <Card.Meta> SUMMARY </Card.Meta>
-                <Card.Description>{props.job.summary} </Card.Description>
-            </Card.Content>
+            {props.job.summary && (
+                <Card.Content>
+                    <Card.Meta> SUMMARY </Card.Meta>
+                    <Card.Description>{props.job.summary} </Card.Description>
+                </Card.Content>
+            )}
 
-            <Card.Content>
-                <Card.Meta> RESPONSIBILITIES </Card.Meta>
-                <Card.Description>
-                    <List bulleted>
-                        {props.job.responsibilities.map((res, index) => {
-                            return (
-                                <List.Item
-                                    key={res + index}
-                                    className="font_size_small"
-                                >
-                                    {res}
-                                </List.Item>
-                            );
-                        })}
-                    </List>
-                </Card.Description>
-            </Card.Content>
-            <Card.Content>
-                <Card.Meta> SKILLS USED </Card.Meta>
-                <Card.Description>
-                    <List bulleted>
-                        {props.job.skills_used.map((skill) => {
-                            return (
-                                <List.Item
-                                    key={skill}
-                                    className="font_size_small"
-                                >
-                                    {skill}
-                                </List.Item>
-                            );
-                        })}
-                    </List>
-                </Card.Description>
-            </Card.Content>
+            {props.job.responsibilities.length > 0 && (
+                <Card.Content>
+                    <Card.Meta> RESPONSIBILITIES </Card.Meta>
+                    <Card.Description>
+                        <List bulleted>
+                            {props.job.responsibilities.map((res, index) => {
+                                return (
+                                    <List.Item
+                                        key={res + index}
+                                        className="font_size_small"
+                                    >
+                                        {res}
+                                    </List.Item>
+                                );
+                            })}
+                        </List>
+                    </Card.Description>
+                </Card.Content>
+            )}
+            {props.job.skills_used.length > 0 && (
+                <Card.Content>
+                    <Card.Meta> SKILLS USED </Card.Meta>
+                    <Card.Description>
+                        <List bulleted>
+                            {props.job.skills_used.map((skill) => {
+                                return (
+                                    <List.Item
+                                        key={skill}
+                                        className="font_size_small"
+                                    >
+                                        {skill}
+                                    </List.Item>
+                                );
+                            })}
+                        </List>
+                    </Card.Description>
+                </Card.Content>
+            )}
         </Card>
     );
 };
