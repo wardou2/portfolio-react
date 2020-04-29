@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
 import Nav from './Nav';
 import NamePicIntro from './NamePicIntro';
 import AboutMe from './AboutMe';
@@ -6,7 +7,6 @@ import Contact from './Contact';
 import Jobs from './Jobs';
 import Githubs from './Githubs';
 import Skills from './Skills';
-import { Grid } from 'semantic-ui-react';
 
 const Content = (props) => {
     return (

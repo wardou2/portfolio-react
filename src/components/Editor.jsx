@@ -82,6 +82,7 @@ export default class Editor extends Component {
                     return null;
             }
         }
+        return null;
     };
 
     render() {

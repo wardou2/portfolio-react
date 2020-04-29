@@ -6,6 +6,7 @@ const parsePhoneNum = (num) => {
     if (num) {
         return `(${num.slice(0, 3)}) ${num.slice(3, 6)} ${num.slice(6)}`;
     }
+    return '';
 };
 
 const Contact = (props) => {
@@ -31,13 +32,13 @@ const Contact = (props) => {
                     </span>{' '}
                 </Grid.Column>
                 <Grid.Column width={3} className="text" textAlign="center">
-                    <a href={'mailto:' + props.user.email}>
+                    <a href={`mailto:${props.user.email}`}>
                         {' '}
                         {props.user.email}{' '}
                     </a>{' '}
                 </Grid.Column>{' '}
                 <Grid.Column width={3} className="text" textAlign="center">
-                    <a href={'tel: +1' + props.user.phone}>
+                    <a href={`tel: +1${props.user.phone}`}>
                         {' '}
                         +1 {parsePhoneNum(props.user.phone)}{' '}
                     </a>{' '}
@@ -57,13 +58,13 @@ const Contact = (props) => {
                     </span>{' '}
                 </Grid.Column>
                 <Grid.Column width={4} className="text" textAlign="center">
-                    <a href={'mailto:' + props.user.email}>
+                    <a href={`mailto:${props.user.email}`}>
                         {' '}
                         {props.user.email}{' '}
                     </a>{' '}
                 </Grid.Column>{' '}
                 <Grid.Column width={4} className="text" textAlign="center">
-                    <a href={'tel: +1' + props.user.phone}>
+                    <a href={`tel: +1${props.user.phone}`}>
                         {' '}
                         +1 {parsePhoneNum(props.user.phone)}{' '}
                     </a>{' '}
@@ -84,13 +85,13 @@ const Contact = (props) => {
                 </Grid.Column>
                 <Grid.Column width={10} className="text" textAlign="center">
                     <Grid.Row>
-                        <a href={'mailto:' + props.user.email}>
+                        <a href={`mailto:${props.user.email}`}>
                             {' '}
                             {props.user.email}{' '}
                         </a>{' '}
                     </Grid.Row>{' '}
                     <Grid.Row>
-                        <a href={'tel: +1' + props.user.phone}>
+                        <a href={`tel: +1${props.user.phone}`}>
                             {' '}
                             +1 {parsePhoneNum(props.user.phone)}{' '}
                         </a>{' '}

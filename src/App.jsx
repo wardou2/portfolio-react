@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import './App.css';
 import React from 'react';
 import {
@@ -19,7 +20,7 @@ import Editor from './components/Editor';
 const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/';
 // const apiURL = 'http://localhost:3000/api/v1/'
 const HEADERS_AUTH = {
-    Authorization: 'Bearer ' + localStorage.jwt,
+    Authorization: `Bearer ${localStorage.jwt}`,
     'Content-Type': 'application/json',
 };
 const HEADERS_NOAUTH = {
@@ -46,8 +47,8 @@ const DEFAULT_STATE = {
     creatingType: '',
 };
 
-let keys = Object.keys(DEFAULT_STATE);
-let anchors = keys.slice(0, 7);
+const keys = Object.keys(DEFAULT_STATE);
+const anchors = keys.slice(0, 7);
 // used to automate fetch -- the first 7 entries in default state
 // are the names of the resources we want to fetch.
 
@@ -58,7 +59,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        //check for logged in user
+        // check for logged in user
         if (!!localStorage.jwt && !!localStorage.username) {
             this.setState({
                 loggedIn: true,
@@ -69,9 +70,9 @@ class App extends React.Component {
                 loggedIn: false,
             });
         }
-        //automated fetch
-        //special fetch for users
-        fetch(apiURL + 'users')
+        // automated fetch
+        // special fetch for users
+        fetch(`${apiURL}users`)
             .then((res) => res.json())
             .then((users) => {
                 if (this.props.sandbox) {
@@ -81,7 +82,7 @@ class App extends React.Component {
                                 currentUser: user,
                             });
                     });
-                    let ev = document.createEvent('Event');
+                    const ev = document.createEvent('Event');
                     this.login(ev, 'sandbox', 'sandbox');
                 } else {
                     localStorage.removeItem('jwt');
@@ -94,9 +95,9 @@ class App extends React.Component {
             .then((res) => {
                 anchors.forEach((a) => {
                     fetch(apiURL + a)
-                        .then((res) => res.json())
+                        .then((result) => result.json())
                         .then((json) => {
-                            let relevantObjs = [];
+                            const relevantObjs = [];
                             json.forEach((ob) => {
                                 if (ob.user_id === this.state.currentUser.id) {
                                     relevantObjs.push(ob);
@@ -123,7 +124,7 @@ class App extends React.Component {
         this.setState({
             message: '',
         });
-        fetch(apiURL + 'login', {
+        fetch(`${apiURL}login`, {
             method: 'POST',
             headers: HEADERS_NOAUTH,
             body: JSON.stringify({
@@ -139,7 +140,7 @@ class App extends React.Component {
                     localStorage.setItem('jwt', json.jwt);
                     localStorage.setItem('username', username);
                     this.setState({
-                        username: username,
+                        username,
                         loggedIn: true,
                     });
                     this.setState({
@@ -173,7 +174,7 @@ class App extends React.Component {
                 editingType: type,
                 creatingType: '',
                 sidebarVisible: true,
-            }); //, ()=>console.log('set up edit', this.state.editingType))
+            });
         } else {
             alert('Please log in to edit');
         }
@@ -191,14 +192,14 @@ class App extends React.Component {
                 },
                 creatingType: type,
                 sidebarVisible: true,
-            }); //, ()=>console.log('set up new', this.state.creatingType))
+            });
         } else {
-            alert('Please log in to add ' + this.state.creatingType);
+            alert(`Please log in to add ${this.state.creatingType}`);
         }
     };
 
     handleSubmit = (content) => {
-        fetch(apiURL + this.state.editingType + '/' + content.id, {
+        fetch(`${apiURL + this.state.editingType}/${content.id}`, {
             method: 'PATCH',
             headers: HEADERS_AUTH,
             body: JSON.stringify({
@@ -206,40 +207,46 @@ class App extends React.Component {
             }),
         })
             .then((res) => res.json())
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                throw Error(error);
+            })
             .then((json) => {
-                let editingTypeCopy = this.state.editingType;
+                const editingTypeCopy = this.state.editingType;
                 switch (editingTypeCopy) {
-                    case 'users':
+                    case 'users': {
                         this.setState({
                             users: [json],
                             currentUser: json,
                         });
                         break;
-                    case 'skills':
-                        let skillsCopy = this.state.skills.map((skill) => {
+                    }
+                    case 'skills': {
+                        const skillsCopy = this.state.skills.map((skill) => {
                             return skill.id === content.id ? content : skill;
                         });
                         this.setState({
                             skills: skillsCopy,
                         });
                         break;
-                    case 'jobs':
-                        let jobsCopy = this.state.jobs.map((job) => {
+                    }
+                    case 'jobs': {
+                        const jobsCopy = this.state.jobs.map((job) => {
                             return job.id === content.id ? content : job;
                         });
                         this.setState({
                             jobs: jobsCopy,
                         });
                         break;
-                    case 'githubs':
-                        let githubsCopy = this.state.githubs.map((github) => {
+                    }
+                    case 'githubs': {
+                        const githubsCopy = this.state.githubs.map((github) => {
                             return github.id === content.id ? content : github;
                         });
                         this.setState({
                             githubs: githubsCopy,
                         });
                         break;
+                    }
                     default:
                         return null;
                 }
@@ -247,44 +254,45 @@ class App extends React.Component {
                     sidebarVisible: false,
                     editingType: '',
                 });
+                return null;
             });
     };
 
     shiftOrder = (incomingGroup, item, next) => {
-        let group = this.state[incomingGroup].sort(
+        const group = this.state[incomingGroup].sort(
             (a, b) => a.order_id - b.order_id
         );
-        let orderIds = group.map((s) => s.order_id);
-        let curIndex = orderIds.indexOf(item.order_id);
-        let maxPos = orderIds.length - 1;
-        let move = next ? 1 : -1; //if next is true, shift up; else shift down
+        const orderIds = group.map((s) => s.order_id);
+        const curIndex = orderIds.indexOf(item.order_id);
+        const maxPos = orderIds.length - 1;
+        const move = next ? 1 : -1; // if next is true, shift up; else shift down
 
         if (curIndex === maxPos && next) {
-            let t = orderIds[maxPos];
+            const t = orderIds[maxPos];
+            // eslint-disable-next-line prefer-destructuring
             orderIds[maxPos] = orderIds[0];
             orderIds[0] = t;
         } else if (curIndex === 0 && !next) {
-            let t = orderIds[0];
+            const t = orderIds[0];
             orderIds[0] = orderIds[maxPos];
             orderIds[maxPos] = t;
         } else {
-            let t = orderIds[curIndex];
+            const t = orderIds[curIndex];
             orderIds[curIndex] = orderIds[curIndex + move];
             orderIds[curIndex + move] = t;
         }
 
-        group.forEach((item, index) => {
-            if (item.order_id !== orderIds[index]) {
-                item.order_id = orderIds[index];
-                fetch(apiURL + '/' + incomingGroup + '/' + item.id, {
+        group.forEach((groupItem, index) => {
+            if (groupItem.order_id !== orderIds[index]) {
+                // eslint-disable-next-line no-param-reassign
+                groupItem.order_id = orderIds[index];
+                fetch(`${apiURL}/${incomingGroup}/${groupItem.id}`, {
                     method: 'PATCH',
                     headers: HEADERS_AUTH,
                     body: JSON.stringify({
-                        ...item,
+                        ...groupItem,
                     }),
-                })
-                    .then((res) => res.json())
-                    .then(console.log);
+                }).then((res) => res.json());
             }
         });
         this.setState({
@@ -293,7 +301,8 @@ class App extends React.Component {
     };
 
     handleCreate = (content) => {
-        content['order_id'] = this.state[this.state.creatingType].length;
+        // eslint-disable-next-line no-param-reassign
+        content.order_id = this.state[this.state.creatingType].length;
         fetch(apiURL + this.state.creatingType, {
             method: 'POST',
             headers: HEADERS_AUTH,
@@ -303,9 +312,11 @@ class App extends React.Component {
             }),
         })
             .then((res) => res.json())
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                throw Error(error);
+            })
             .then((json) => {
-                let creatingTypeCopy = this.state.creatingType;
+                const creatingTypeCopy = this.state.creatingType;
                 this.setState({
                     [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
                     creatingType: '',
@@ -315,13 +326,13 @@ class App extends React.Component {
     };
 
     handleDelete = (content) => {
-        fetch(apiURL + this.state.editingType + '/' + content.id, {
+        fetch(`${apiURL + this.state.editingType}/${content.id}`, {
             method: 'DELETE',
             headers: HEADERS_AUTH,
         })
             .then((res) => res.json())
             .then((json) => {
-                let copy = this.state[this.state.editingType];
+                const copy = this.state[this.state.editingType];
                 copy.splice(
                     copy.findIndex((el) => el.id === json.id),
                     1
