@@ -13,9 +13,40 @@
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.87.3"
     },
+    "eslintConfig": {
+        "plugins": [
+            "prettier"
+        ],
+        "extends": [
+            "airbnb-base",
+            "react-app",
+            "plugin:prettier/recommended",
+            "eslint-config-prettier"
+        ],
+        "env": {
+            "browser": true
+        },
+        "settings": {
+            "import/extensions": [
+                ".js",
+                ".jsx"
+            ]
+        },
+        "parserOptions": {
+            "ecmaVersion": 6,
+            "ecmaFeatures": {
+                "jsx": true
+            }
+        },
+        "rules": {
+            "prettier/prettier": "error",
+            "import/no-unresolved": "off",
+            "import/extensions": "off"
+        }
+    },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "EXTEND_ESLINT=true react-scripts start",
+        "build": "EXTEND_ESLINT=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
