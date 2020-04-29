@@ -56,10 +56,10 @@ const Content = (props) => {
                 </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row key="github" id="github">
+            <Grid.Row key="jobs" id="jobs">
                 <Grid.Column>
-                    <Githubs
-                        githubs={props.githubs}
+                    <Jobs
+                        jobs={props.jobs}
                         editing={props.editing}
                         startEdit={props.startEdit}
                         loggedIn={props.loggedIn}
@@ -70,10 +70,10 @@ const Content = (props) => {
                 </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row key="jobs" id="jobs">
+            <Grid.Row key="github" id="github">
                 <Grid.Column>
-                    <Jobs
-                        jobs={props.jobs}
+                    <Githubs
+                        githubs={props.githubs}
                         editing={props.editing}
                         startEdit={props.startEdit}
                         loggedIn={props.loggedIn}
