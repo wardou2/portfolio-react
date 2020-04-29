@@ -1,7 +1,13 @@
 import React from 'react';
 import { Card, List, Button, Image, Icon } from 'semantic-ui-react';
 
+import { sanitizeArray} from '../util/String'
+
 const Job = (props) => {
+    
+    const skillsUsed = sanitizeArray(props.job.skills_used)
+    const responsibilities = sanitizeArray(props.job.responsibilities)
+
     return (
         <Card raised className="corner-sharp text font-size-medium">
             {props.loggedIn && (
@@ -53,12 +59,12 @@ const Job = (props) => {
                 </Card.Content>
             )}
 
-            {props.job.responsibilities.length > 0 && (
+            {responsibilities.length > 0 && (
                 <Card.Content>
                     <Card.Meta> RESPONSIBILITIES </Card.Meta>
                     <Card.Description>
                         <List bulleted>
-                            {props.job.responsibilities.map((res, index) => {
+                            {responsibilities.map((res, index) => {
                                 return (
                                     <List.Item
                                         key={res + index}
@@ -72,12 +78,12 @@ const Job = (props) => {
                     </Card.Description>
                 </Card.Content>
             )}
-            {props.job.skills_used.length > 0 && (
+            {skillsUsed.length > 0 && (
                 <Card.Content>
                     <Card.Meta> SKILLS USED </Card.Meta>
                     <Card.Description>
                         <List bulleted>
-                            {props.job.skills_used.map((skill) => {
+                            {skillsUsed.map((skill) => {
                                 return (
                                     <List.Item
                                         key={skill}
