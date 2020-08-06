@@ -74,22 +74,11 @@ class App extends React.Component {
         fetch(`${apiURL}users`)
             .then((res) => res.json())
             .then((users) => {
-                if (this.props.sandbox) {
-                    users.forEach((user) => {
-                        if (user.username === 'sandbox')
-                            this.setState({
-                                currentUser: user,
-                            });
-                    });
-                    const ev = document.createEvent('Event');
-                    this.login(ev, 'sandbox', 'sandbox');
-                } else {
-                    localStorage.removeItem('jwt');
-                    localStorage.removeItem('username');
-                    this.setState({
-                        currentUser: users[0],
-                    });
-                }
+                localStorage.removeItem('jwt');
+                localStorage.removeItem('username');
+                this.setState({
+                    currentUser: users[0],
+                });
             })
             .then((res) => {
                 anchors.forEach((a) => {

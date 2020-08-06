@@ -6,24 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import ScrollHandler from './components/ScrollHandler';
 import App from './App';
 
-let sandbox = '';
-
 const RoutedApp = () => (
     <Router>
-        <Route path="/sandbox" component={Sandbox} />{' '}
-        <Route path="/" component={MainApp} />{' '}
+        <Route path="/" component={MainApp} />
     </Router>
 );
-
-function Sandbox() {
-    sandbox = true;
-    return null;
-}
 
 function MainApp() {
     return (
         <ScrollHandler>
-            <App sandbox={sandbox} />{' '}
+            <App  />
         </ScrollHandler>
     );
 }
