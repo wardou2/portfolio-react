@@ -404,7 +404,6 @@ class App extends React.Component {
                             editing={this.state.editing}
                             loggedIn={this.state.loggedIn}
                         />
-
                         <Confirm
                             cancelButton={<Button> Go Back </Button>}
                             confirmButton={<Button negative> Delete </Button>}

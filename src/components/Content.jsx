@@ -7,6 +7,7 @@ import Contact from './Contact';
 import Jobs from './Jobs';
 import Githubs from './Githubs';
 import Skills from './Skills';
+import Music from './Music'
 
 const Content = (props) => {
     return (
@@ -83,7 +84,16 @@ const Content = (props) => {
                     />
                 </Grid.Column>
             </Grid.Row>
-
+            <Grid.Row key="music" id="music">
+                <Grid.Column>
+                    <Music 
+                        user={props.currentUser}
+                        editing={props.editing}
+                        startEdit={props.startEdit}
+                        loggedIn={props.loggedIn}
+                    />
+                </Grid.Column>
+            </Grid.Row>
             <Grid.Row key="contact" id="contact">
                 <Grid.Column>
                     <Contact
@@ -95,6 +105,7 @@ const Content = (props) => {
                     />
                 </Grid.Column>
             </Grid.Row>
+          
         </Grid>
     );
 };
