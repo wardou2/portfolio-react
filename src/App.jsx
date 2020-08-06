@@ -1,5 +1,5 @@
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
 import {
     Icon,
     Menu,
@@ -8,22 +8,22 @@ import {
     Sticky,
     Confirm,
     Button,
-} from 'semantic-ui-react';
+} from "semantic-ui-react";
 
-import NavLinks from './components/NavLinks';
-import Content from './components/Content';
-import Login from './components/Login';
-import LoggedIn from './components/LoggedIn';
-import Editor from './components/Editor';
+import NavLinks from "./components/NavLinks";
+import Content from "./components/Content";
+import Login from "./components/Login";
+import LoggedIn from "./components/LoggedIn";
+import Editor from "./components/Editor";
 
-const apiURL = 'https://douglaswardportfolio-backend.herokuapp.com/api/v1/';
+const apiURL = "https://douglaswardportfolio-backend.herokuapp.com/api/v1/";
 // const apiURL = 'http://localhost:3000/api/v1/'
 const HEADERS_AUTH = {
     Authorization: `Bearer ${localStorage.jwt}`,
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
 };
 const HEADERS_NOAUTH = {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
 };
 
 const DEFAULT_STATE = {
@@ -35,15 +35,15 @@ const DEFAULT_STATE = {
     links: [],
     users: [],
 
-    message: '',
+    message: "",
     currentUser: {},
     sidebarVisible: false,
     loggedIn: false,
     editorDisabled: true,
     editing: {},
-    editingType: '',
+    editingType: "",
     creating: {},
-    creatingType: '',
+    creatingType: "",
 };
 
 const keys = Object.keys(DEFAULT_STATE);
@@ -74,8 +74,8 @@ class App extends React.Component {
         fetch(`${apiURL}users`)
             .then((res) => res.json())
             .then((users) => {
-                localStorage.removeItem('jwt');
-                localStorage.removeItem('username');
+                localStorage.removeItem("jwt");
+                localStorage.removeItem("username");
                 this.setState({
                     currentUser: users[0],
                 });
@@ -103,17 +103,17 @@ class App extends React.Component {
         // open or close sidebar & clear editingType
         this.setState({
             sidebarVisible: !this.state.sidebarVisible,
-            editingType: '',
+            editingType: "",
         });
     };
 
     login = (ev, username, password) => {
         ev.preventDefault();
         this.setState({
-            message: '',
+            message: "",
         });
         fetch(`${apiURL}login`, {
-            method: 'POST',
+            method: "POST",
             headers: HEADERS_NOAUTH,
             body: JSON.stringify({
                 user: {
@@ -125,8 +125,8 @@ class App extends React.Component {
             .then((res) => res.json())
             .then((json) => {
                 if (json && json.jwt) {
-                    localStorage.setItem('jwt', json.jwt);
-                    localStorage.setItem('username', username);
+                    localStorage.setItem("jwt", json.jwt);
+                    localStorage.setItem("username", username);
                     this.setState({
                         username,
                         loggedIn: true,
@@ -135,10 +135,10 @@ class App extends React.Component {
                         sidebarVisible: false,
                     });
                 } else {
-                    localStorage.removeItem('jwt');
-                    localStorage.removeItem('username');
+                    localStorage.removeItem("jwt");
+                    localStorage.removeItem("username");
                     this.setState({
-                        username: '',
+                        username: "",
                         message: json.message,
                         loggedIn: false,
                     });
@@ -151,28 +151,28 @@ class App extends React.Component {
             loggedIn: false,
             sidebarVisible: false,
         });
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('username');
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("username");
     };
 
     startEdit = (content, type) => {
-        if (localStorage.getItem('jwt') !== '') {
+        if (localStorage.getItem("jwt") !== "") {
             this.setState({
                 editing: content,
                 editingType: type,
-                creatingType: '',
+                creatingType: "",
                 sidebarVisible: true,
             });
         } else {
-            alert('Please log in to edit');
+            alert("Please log in to edit");
         }
     };
 
     startNew = (type) => {
-        if (localStorage.getItem('jwt') !== '') {
+        if (localStorage.getItem("jwt") !== "") {
             this.setState({
                 editing: {},
-                editingType: '',
+                editingType: "",
                 creating: {
                     content: {
                         user_id: this.state.currentUser.id,
@@ -188,7 +188,7 @@ class App extends React.Component {
 
     handleSubmit = (content) => {
         fetch(`${apiURL + this.state.editingType}/${content.id}`, {
-            method: 'PATCH',
+            method: "PATCH",
             headers: HEADERS_AUTH,
             body: JSON.stringify({
                 ...content,
@@ -201,14 +201,14 @@ class App extends React.Component {
             .then((json) => {
                 const editingTypeCopy = this.state.editingType;
                 switch (editingTypeCopy) {
-                    case 'users': {
+                    case "users": {
                         this.setState({
                             users: [json],
                             currentUser: json,
                         });
                         break;
                     }
-                    case 'skills': {
+                    case "skills": {
                         const skillsCopy = this.state.skills.map((skill) => {
                             return skill.id === content.id ? content : skill;
                         });
@@ -217,7 +217,7 @@ class App extends React.Component {
                         });
                         break;
                     }
-                    case 'jobs': {
+                    case "jobs": {
                         const jobsCopy = this.state.jobs.map((job) => {
                             return job.id === content.id ? content : job;
                         });
@@ -226,7 +226,7 @@ class App extends React.Component {
                         });
                         break;
                     }
-                    case 'githubs': {
+                    case "githubs": {
                         const githubsCopy = this.state.githubs.map((github) => {
                             return github.id === content.id ? content : github;
                         });
@@ -240,7 +240,7 @@ class App extends React.Component {
                 }
                 this.setState({
                     sidebarVisible: false,
-                    editingType: '',
+                    editingType: "",
                 });
                 return null;
             });
@@ -273,7 +273,7 @@ class App extends React.Component {
             if (groupItem.order_id !== orderIds[index]) {
                 groupItem.order_id = orderIds[index];
                 fetch(`${apiURL}/${incomingGroup}/${groupItem.id}`, {
-                    method: 'PATCH',
+                    method: "PATCH",
                     headers: HEADERS_AUTH,
                     body: JSON.stringify({
                         ...groupItem,
@@ -289,7 +289,7 @@ class App extends React.Component {
     handleCreate = (content) => {
         content.order_id = this.state[this.state.creatingType].length;
         fetch(apiURL + this.state.creatingType, {
-            method: 'POST',
+            method: "POST",
             headers: HEADERS_AUTH,
             body: JSON.stringify({
                 ...content,
@@ -304,7 +304,7 @@ class App extends React.Component {
                 const creatingTypeCopy = this.state.creatingType;
                 this.setState({
                     [creatingTypeCopy]: [...this.state[creatingTypeCopy], json],
-                    creatingType: '',
+                    creatingType: "",
                     sidebarVisible: false,
                 });
             });
@@ -312,7 +312,7 @@ class App extends React.Component {
 
     handleDelete = (content) => {
         fetch(`${apiURL + this.state.editingType}/${content.id}`, {
-            method: 'DELETE',
+            method: "DELETE",
             headers: HEADERS_AUTH,
         })
             .then((res) => res.json())
@@ -324,7 +324,7 @@ class App extends React.Component {
                 );
                 this.setState({
                     [this.state.editingType]: copy,
-                    editingType: '',
+                    editingType: "",
                     sidebarVisible: false,
                 });
             });
@@ -350,9 +350,9 @@ class App extends React.Component {
                         </Menu.Item>
 
                         <Menu.Item as="a">
-                            {' '}
+                            {" "}
                             {this.state.loggedIn &&
-                            localStorage.getItem('jwt') ? (
+                            localStorage.getItem("jwt") ? (
                                 <LoggedIn
                                     username={this.state.username}
                                     logOut={this.logOut}
@@ -362,13 +362,11 @@ class App extends React.Component {
                                     login={this.login}
                                     message={this.state.message}
                                 />
-                            )}{' '}
+                            )}{" "}
                         </Menu.Item>
 
-                        {this.state.editingType === '' &&
-                        this.state.creatingType === '' ? (
-                            <NavLinks toggleSidebar={this.toggleSidebar} />
-                        ) : (
+                        {this.state.editingType === "" &&
+                        this.state.creatingType === "" ? null : (
                             <Menu.Item>
                                 <Editor
                                     creating={this.state.creating}
