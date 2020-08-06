@@ -10,7 +10,6 @@ import {
     Button,
 } from "semantic-ui-react";
 
-import NavLinks from "./components/NavLinks";
 import Content from "./components/Content";
 import Login from "./components/Login";
 import LoggedIn from "./components/LoggedIn";
