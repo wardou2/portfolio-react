@@ -350,7 +350,6 @@ class App extends React.Component {
                         </Menu.Item>
 
                         <Menu.Item as="a">
-                            {" "}
                             {this.state.loggedIn &&
                             localStorage.getItem("jwt") ? (
                                 <LoggedIn
@@ -362,7 +361,7 @@ class App extends React.Component {
                                     login={this.login}
                                     message={this.state.message}
                                 />
-                            )}{" "}
+                            )}
                         </Menu.Item>
 
                         {this.state.editingType === "" &&
