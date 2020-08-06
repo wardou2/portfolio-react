@@ -26,6 +26,11 @@ const NavLinks = (props) => {
                 </Link>
             </Menu.Item>
             <Menu.Item>
+                <Link className="item font-heading" to="/#music">
+                    MUSIC
+                </Link>
+            </Menu.Item>
+            <Menu.Item>
                 <Link className="item font-heading" to="/#contact">
                     CONTACT
                 </Link>

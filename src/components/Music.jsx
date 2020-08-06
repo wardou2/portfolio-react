@@ -4,12 +4,7 @@ import { Grid } from 'semantic-ui-react';
 import SectionHeading from './SectionHeading';
 
 const MUSIC_URLS =[
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/11372011&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/11372011&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/11372011&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/11372011&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/11372011&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
-]
+    "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/871499902&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"    ]
 
 const getEmbeds = () => {
     return MUSIC_URLS.map(url => {
