@@ -17,6 +17,7 @@ const Content = (props) => {
                     <Nav
                         toggleSidebar={props.toggleSidebar}
                         loggedIn={props.loggedIn}
+                        isMobile={props.isMobile}
                     />
                 </Grid.Column>
             </Grid.Row>
@@ -91,6 +92,7 @@ const Content = (props) => {
                         editing={props.editing}
                         startEdit={props.startEdit}
                         loggedIn={props.loggedIn}
+                        isMobile={props.isMobile}
                     />
                 </Grid.Column>
             </Grid.Row>

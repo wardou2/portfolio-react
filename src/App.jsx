@@ -14,6 +14,7 @@ import Content from "./components/Content";
 import Login from "./components/Login";
 import LoggedIn from "./components/LoggedIn";
 import Editor from "./components/Editor";
+import NavLinks from "./components/NavLinks";
 
 const apiURL = "https://douglaswardportfolio-backend.herokuapp.com/api/v1/";
 // const apiURL = 'http://localhost:3000/api/v1/'
@@ -43,6 +44,7 @@ const DEFAULT_STATE = {
     editingType: "",
     creating: {},
     creatingType: "",
+    isMobile: false,
 };
 
 const keys = Object.keys(DEFAULT_STATE);
@@ -96,6 +98,7 @@ class App extends React.Component {
                         });
                 });
             });
+            this.setState({isMobile: window.matchMedia("only screen and (max-width: 760px)").matches})
     }
 
     toggleSidebar = () => {
@@ -364,7 +367,12 @@ class App extends React.Component {
                         </Menu.Item>
 
                         {this.state.editingType === "" &&
-                        this.state.creatingType === "" ? null : (
+                        this.state.creatingType === "" ? (
+                            this.state.isMobile && <NavLinks 
+                                isMobile={this.state.isMobile} 
+                                toggleSidebar={this.toggleSidebar}
+                            />
+                        ) : (
                             <Menu.Item>
                                 <Editor
                                     creating={this.state.creating}
@@ -402,6 +410,7 @@ class App extends React.Component {
                             currentUser={this.state.currentUser}
                             editing={this.state.editing}
                             loggedIn={this.state.loggedIn}
+                            isMobile={this.state.isMobile}
                         />
                         <Confirm
                             cancelButton={<Button> Go Back </Button>}
