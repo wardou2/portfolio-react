@@ -31,7 +31,7 @@ const LINK_DETAILS = [
 
 const getLinks = () => (
     LINK_DETAILS.map(entry => (
-        <Menu.Item>
+        <Menu.Item key={entry.name}>
             <Link className="item font-heading" to={entry.link}>
                 {entry.name}
             </Link>
@@ -40,7 +40,7 @@ const getLinks = () => (
 )
 const getLinksMobile = (toggleSidebar) => (
     LINK_DETAILS.map(entry => (
-        <Menu.Item>
+        <Menu.Item key={entry.name}>
             <Link className="item font-heading" to={entry.link} onClick={toggleSidebar}>
                 {entry.name}
             </Link>

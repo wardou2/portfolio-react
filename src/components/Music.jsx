@@ -9,11 +9,12 @@ const MUSIC_URLS =[
 
 const Music = (props) => {
     const getEmbeds = () => {
+        let i=0
         return MUSIC_URLS.map(url => {
-            return props.isMobile ? <Grid.Column width={16} >
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src={url}></iframe>
-            </Grid.Column> : <Grid.Column width={6} >
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src={url}></iframe>
+            i++
+            const width = props.isMobile ? 16 : 6
+            return <Grid.Column width={width} key={i}>
+                <iframe width="100%" height="166" scrolling="no" frameBorder="no" allow="autoplay" src={url} title={i}></iframe>
             </Grid.Column>
         })
     }
