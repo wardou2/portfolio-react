@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Form, Button } from "semantic-ui-react";
 
 const INITIALSTATE = {
     content: {
-        company: '',
-        title: '',
-        summary: '',
-        start_month: '',
-        start_year: '',
-        end_month: 'jan',
-        end_year: '',
-        responsibilities: [''],
-        skills_used: [''],
-        img_url: '',
+        company: "",
+        title: "",
+        summary: "",
+        start_month: "",
+        start_year: "",
+        end_month: "jan",
+        end_year: "",
+        responsibilities: [""],
+        skills_used: [""],
+        img_url: "",
     },
 };
 
@@ -44,7 +44,7 @@ export default class JobsCreate extends Component {
 
     handleAddSkill = () => {
         const skillsCopy = this.state.content.skills_used;
-        skillsCopy.push('');
+        skillsCopy.push("");
         this.setState({
             content: {
                 ...this.state.content,
@@ -66,7 +66,7 @@ export default class JobsCreate extends Component {
 
     handleAddResp = () => {
         const resCopy = this.state.content.responsibilities;
-        resCopy.push('');
+        resCopy.push("");
         this.setState({
             content: {
                 ...this.state.content,
@@ -91,8 +91,8 @@ export default class JobsCreate extends Component {
         this.setState({
             content: {
                 ...INITIALSTATE.content,
-                responsibilities: [''],
-                skills_used: [''],
+                responsibilities: [""],
+                skills_used: [""],
             },
         });
     };
@@ -214,8 +214,8 @@ export default class JobsCreate extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveResp(i)}
                             >
-                                {' '}
-                                -{' '}
+                                {" "}
+                                -{" "}
                             </Button>
                         </Form.Group>
                     );
@@ -243,8 +243,8 @@ export default class JobsCreate extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveSkill(i)}
                             >
-                                {' '}
-                                -{' '}
+                                {" "}
+                                -{" "}
                             </Button>
                         </Form.Group>
                     );

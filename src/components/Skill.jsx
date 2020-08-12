@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Popup, Image, Button } from 'semantic-ui-react';
+import React from "react";
+import { Grid, Popup, Image, Button } from "semantic-ui-react";
 
 export default function Skill(props) {
     if (props.loggedIn) {
@@ -8,7 +8,7 @@ export default function Skill(props) {
                 <Button
                     basic
                     className="skill-button"
-                    onClick={(_) => props.startEdit(props.skill, 'skills')}
+                    onClick={(_) => props.startEdit(props.skill, "skills")}
                 >
                     <Popup
                         key={props.skill.name + props.index}

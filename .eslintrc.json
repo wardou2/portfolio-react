@@ -18,10 +18,11 @@
         }
     },
     "rules": {
-        "prettier/prettier": "error",
+        "prettier/prettier": "warn",
         "import/no-unresolved": "off",
         "import/extensions": "off",
         "prefer-destructuring": "off",
-        "no-param-reassign": "warn"
+        "no-param-reassign": "warn",
+        "no-plusplus": "off"
     }
 }

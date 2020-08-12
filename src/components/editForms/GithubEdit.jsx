@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Form, Button } from "semantic-ui-react";
 
 export default class GithubEdit extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ export default class GithubEdit extends Component {
 
     handleAddContribution = () => {
         const contributionCopy = this.state.content.contribution;
-        contributionCopy.push('');
+        contributionCopy.push("");
         this.setState({
             content: {
                 ...this.state.content,
@@ -123,8 +123,8 @@ export default class GithubEdit extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveContribution(i)}
                             >
-                                {' '}
-                                -{' '}
+                                {" "}
+                                -{" "}
                             </Button>
                         </Form.Group>
                     );
