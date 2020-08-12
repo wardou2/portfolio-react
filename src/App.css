@@ -23,7 +23,7 @@
 }
 
 .font-heading {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .font-size-small {
@@ -52,7 +52,7 @@
 }
 
 .font-heading {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .image-circle-portrait {
@@ -68,7 +68,7 @@
     /* height: 80px !important; */
     overflow: hidden;
     border-radius: 50%;
-    border: 1px solid rgba(0, 129, 129, .3);
+    border: 1px solid rgba(0, 129, 129, 0.3);
 }
 
 .image-circle-small-skill img {
@@ -92,7 +92,7 @@ img {
 }
 
 .text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 300;
     font-size: 1.25rem;
     line-height: 2rem;
@@ -102,11 +102,15 @@ img {
 /* ----------------- THEMES ------------------- */
 
 .theme-default-heading {
-    background: linear-gradient(90deg, rgba(255, 0, 191, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 191, 0.25) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .theme-default:before {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     left: 0;
@@ -115,13 +119,17 @@ img {
     height: 100%;
     backface-visibility: hidden;
     background: rgb(0, 191, 255);
-    background: linear-gradient(0deg, rgba(0, 191, 255, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(0, 191, 255, 0.2) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     background-image: url(/images/light_noise_diagonal_@2X.png) green;
     opacity: 0.4;
 }
 
 .theme-default:after {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     backface-visibility: hidden;
@@ -131,15 +139,23 @@ img {
     height: 100%;
     filter: grayscale(10%) invert(10%);
     background: rgb(0, 191, 255);
-    background: linear-gradient(0deg, rgba(0, 191, 255, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(0, 191, 255, 0.2) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
 }
 
 .theme-autumn-heading {
-    background: linear-gradient(90deg, rgba(60, 97, 106, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(60, 97, 106, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .theme-autumn:before {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     left: 0;
@@ -148,12 +164,16 @@ img {
     height: 100%;
     backface-visibility: hidden;
     background: rgb(160, 41, 17);
-    background: linear-gradient(0deg, rgba(160, 41, 17, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(160, 41, 17, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     opacity: 0.4;
 }
 
 .theme-autumn:after {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     backface-visibility: hidden;
@@ -163,15 +183,23 @@ img {
     height: 100%;
     filter: grayscale(10%) invert(10%);
     background: rgb(160, 41, 17);
-    background: linear-gradient(0deg, rgba(160, 41, 17, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(160, 41, 17, 0.2) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
 }
 
 .theme-ice-heading {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
 }
 
 .theme-ice:before {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     left: 0;
@@ -180,12 +208,16 @@ img {
     height: 100%;
     backface-visibility: hidden;
     background: rgb(25, 149, 173);
-    background: linear-gradient(0deg, rgba(25, 149, 173, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(25, 149, 173, 0.2) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     opacity: 0.4;
 }
 
 .theme-ice:after {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     backface-visibility: hidden;
@@ -195,16 +227,24 @@ img {
     height: 100%;
     filter: grayscale(10%) invert(10%);
     background: rgb(25, 149, 173);
-    background: linear-gradient(0deg, rgba(25, 149, 173, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(25, 149, 173, 0.2) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
 }
 
-
 .theme-berries-heading {
-    background: linear-gradient(90deg, rgba(93, 85, 94, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(0, 102, 46, 0.25) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    box-shadow: 0 0 80px 0 rgba(255, 255, 255, 0.4s);
 }
 
 .theme-berries:before {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     left: 0;
@@ -212,13 +252,17 @@ img {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: rgb(223, 225, 102);
-    background: linear-gradient(0deg, rgba(223, 225, 102, 1) 0%, rgba(255, 255, 255, 1) 100%);
-    opacity: 1;
+    background-color: rgb(194, 229, 156, 0.2);
+    background-image: linear-gradient(
+        180deg,
+        rgb(194, 229, 156, 0.8) 0%,
+        rgb(100, 179, 244, 1) 74%
+    );
+    opacity: 0.4;
 }
 
 .theme-berries:after {
-    content: '';
+    content: "";
     position: fixed;
     z-index: -1;
     backface-visibility: hidden;
@@ -226,9 +270,6 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    filter: grayscale(10%) invert(10%);
-    background: rgb(223, 225, 102);
-    background: linear-gradient(0deg, rgba(223, 225, 102, 1) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 /* Super Secret Evil */
@@ -263,5 +304,5 @@ img {
 } */
 
 .image-circle-portrait-alt:hover {
-    opacity: .99;
+    opacity: 0.99;
 }
