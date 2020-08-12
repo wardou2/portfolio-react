@@ -19,7 +19,7 @@
         ]
     },
     "scripts": {
-        "start": "EXTEND_ESLINT=true PORT=3001 react-scripts start",
+        "start": "EXTEND_ESLINT=true react-scripts start",
         "build": "EXTEND_ESLINT=true react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
