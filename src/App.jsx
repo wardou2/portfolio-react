@@ -98,7 +98,10 @@ class App extends React.Component {
                         });
                 });
             });
-            this.setState({isMobile: window.matchMedia("only screen and (max-width: 760px)").matches})
+        this.setState({
+            isMobile: window.matchMedia("only screen and (max-width: 760px)")
+                .matches,
+        });
     }
 
     toggleSidebar = () => {
@@ -368,10 +371,12 @@ class App extends React.Component {
 
                         {this.state.editingType === "" &&
                         this.state.creatingType === "" ? (
-                            this.state.isMobile && <NavLinks 
-                                isMobile={this.state.isMobile} 
-                                toggleSidebar={this.toggleSidebar}
-                            />
+                            this.state.isMobile && (
+                                <NavLinks
+                                    isMobile={this.state.isMobile}
+                                    toggleSidebar={this.toggleSidebar}
+                                />
+                            )
                         ) : (
                             <Menu.Item>
                                 <Editor
