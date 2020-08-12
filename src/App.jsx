@@ -75,8 +75,6 @@ class App extends React.Component {
         fetch(`${apiURL}users`)
             .then((res) => res.json())
             .then((users) => {
-                localStorage.removeItem("jwt");
-                localStorage.removeItem("username");
                 this.setState({
                     currentUser: users[0],
                 });
