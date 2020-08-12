@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { useEffect } from "react";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 const ScrollHandler = ({ location: { hash }, children }) => {
     useEffect(() => {
-        const element = document.getElementById(hash.replace('#', ''));
+        const element = document.getElementById(hash.replace("#", ""));
 
         setTimeout(() => {
             window.scrollTo({
-                behavior: element ? 'smooth' : 'auto',
+                behavior: element ? "smooth" : "auto",
                 top: element ? element.offsetTop : 0,
             });
         }, 100);

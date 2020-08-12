@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Form, Button } from "semantic-ui-react";
 
 export default class GithubCreate extends Component {
     constructor(props) {
         super(props);
         this.state = {
             content: {
-                repo_url: '',
-                name: '',
-                img_url: '',
-                summary: '',
-                contribution: [''],
+                repo_url: "",
+                name: "",
+                img_url: "",
+                summary: "",
+                contribution: [""],
             },
         };
     }
@@ -37,7 +37,7 @@ export default class GithubCreate extends Component {
 
     handleAddContribution = () => {
         const contributionCopy = this.state.content.contribution;
-        contributionCopy.push('');
+        contributionCopy.push("");
         this.setState({
             content: {
                 ...this.state.content,
@@ -120,8 +120,8 @@ export default class GithubCreate extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveContribution(i)}
                             >
-                                {' '}
-                                -{' '}
+                                {" "}
+                                -{" "}
                             </Button>
                         </Form.Group>
                     );

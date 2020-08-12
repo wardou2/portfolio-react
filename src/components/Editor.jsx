@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
-import AboutMeEdit from './editForms/AboutMeEdit';
-import SkillsEdit from './editForms/SkillsEdit';
-import JobEdit from './editForms/JobEdit';
-import GithubEdit from './editForms/GithubEdit';
-import SkillsCreate from './createForms/SkillsCreate';
-import JobsCreate from './createForms/JobsCreate';
-import GithubsCreate from './createForms/GithubsCreate';
+import React, { Component } from "react";
+import { Menu } from "semantic-ui-react";
+import AboutMeEdit from "./editForms/AboutMeEdit";
+import SkillsEdit from "./editForms/SkillsEdit";
+import JobEdit from "./editForms/JobEdit";
+import GithubEdit from "./editForms/GithubEdit";
+import SkillsCreate from "./createForms/SkillsCreate";
+import JobsCreate from "./createForms/JobsCreate";
+import GithubsCreate from "./createForms/GithubsCreate";
 
 export default class Editor extends Component {
     constructor(props) {
@@ -17,14 +17,14 @@ export default class Editor extends Component {
     chooseContent = () => {
         if (this.props.editingType) {
             switch (this.props.editingType) {
-                case 'users':
+                case "users":
                     return (
                         <AboutMeEdit
                             content={this.props.editing}
                             handleSubmit={this.props.handleSubmit}
                         />
                     );
-                case 'skills':
+                case "skills":
                     return (
                         <SkillsEdit
                             content={this.props.editing}
@@ -34,7 +34,7 @@ export default class Editor extends Component {
                             shiftOrder={this.props.shiftOrder}
                         />
                     );
-                case 'jobs':
+                case "jobs":
                     return (
                         <JobEdit
                             content={this.props.editing}
@@ -43,7 +43,7 @@ export default class Editor extends Component {
                             handleDelete={this.props.handleDelete}
                         />
                     );
-                case 'githubs':
+                case "githubs":
                     return (
                         <GithubEdit
                             content={this.props.editing}
@@ -57,21 +57,21 @@ export default class Editor extends Component {
             }
         } else if (this.props.creatingType) {
             switch (this.props.creatingType) {
-                case 'skills':
+                case "skills":
                     return (
                         <SkillsCreate
                             content={this.props.creating}
                             handleCreate={this.props.handleCreate}
                         />
                     );
-                case 'jobs':
+                case "jobs":
                     return (
                         <JobsCreate
                             content={this.props.creating}
                             handleCreate={this.props.handleCreate}
                         />
                     );
-                case 'githubs':
+                case "githubs":
                     return (
                         <GithubsCreate
                             content={this.props.creating}

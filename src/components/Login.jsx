@@ -1,10 +1,10 @@
-import React from 'react';
-import { Form, Grid } from 'semantic-ui-react';
+import React from "react";
+import { Form, Grid } from "semantic-ui-react";
 
 class Login extends React.Component {
     state = {
-        user: '',
-        pass: '',
+        user: "",
+        pass: "",
     };
 
     handleUserChange = (e, { value }) => this.setState({ user: value });
@@ -19,7 +19,7 @@ class Login extends React.Component {
                     <Form.Group widths={1}>
                         <Form.Input
                             inverted
-                            label={{ icon: 'user circle outline inverted' }}
+                            label={{ icon: "user circle outline inverted" }}
                             onChange={this.handleUserChange}
                             iconPosition="left"
                             placeholder="username"
@@ -31,7 +31,7 @@ class Login extends React.Component {
                         <Form.Input
                             inverted
                             type="password"
-                            label={{ icon: 'key' }}
+                            label={{ icon: "key" }}
                             onChange={this.handlePassChange}
                             iconPosition="left"
                             placeholder="password"
