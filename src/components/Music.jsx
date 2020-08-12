@@ -11,7 +11,7 @@ const Music = (props) => {
     const getEmbeds = () => {
         let i = 0;
         return MUSIC_URLS.map((url) => {
-            i++;
+            i += 1;
             const width = props.isMobile ? 16 : 6;
             return (
                 <Grid.Column width={width} key={i}>
