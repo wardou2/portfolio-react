@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-alert */
 import "./App.css";
 import React from "react";
 import {
