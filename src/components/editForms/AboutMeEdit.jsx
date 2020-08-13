@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Form, Button } from 'semantic-ui-react';
 
 export default class AboutMeEdit extends Component {
     constructor(props) {

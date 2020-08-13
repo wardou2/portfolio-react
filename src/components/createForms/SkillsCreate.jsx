@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Form, Button, Header } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Form, Button, Header } from 'semantic-ui-react';
 
 export default class SkillsCreate extends Component {
     constructor(props) {
         super(props);
         this.state = {
             content: {
-                name: "",
-                img_url: "",
+                name: '',
+                img_url: '',
             },
         };
     }

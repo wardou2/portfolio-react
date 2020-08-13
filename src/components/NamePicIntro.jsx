@@ -1,11 +1,11 @@
-import React from "react";
-import { Grid } from "semantic-ui-react";
+import React from 'react';
+import { Grid } from 'semantic-ui-react';
 
 const NamePicIntro = (props) => {
     if (!props.user.intro) {
         return <span className="font-heading font-size-huge">Loading...</span>;
     }
-    const words = props.user.intro.split(" ");
+    const words = props.user.intro.split(' ');
     return (
         <Grid stackable>
             <Grid.Column width={2} />
@@ -26,7 +26,7 @@ const NamePicIntro = (props) => {
                 <br />
                 <span className="text">
                     {words.map((word) => {
-                        return word.includes("http://") ? (
+                        return word.includes('http://') ? (
                             <a
                                 href={word}
                                 target="_blank"

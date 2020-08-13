@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-alert */
 import "./App.css";
 import React from "react";
 import {
@@ -77,6 +75,8 @@ class App extends React.Component {
         fetch(`${apiURL}users`)
             .then((res) => res.json())
             .then((users) => {
+                localStorage.removeItem("jwt");
+                localStorage.removeItem("username");
                 this.setState({
                     currentUser: users[0],
                 });
@@ -98,10 +98,7 @@ class App extends React.Component {
                         });
                 });
             });
-        this.setState({
-            isMobile: window.matchMedia("only screen and (max-width: 760px)")
-                .matches,
-        });
+            this.setState({isMobile: window.matchMedia("only screen and (max-width: 760px)").matches})
     }
 
     toggleSidebar = () => {
@@ -371,12 +368,10 @@ class App extends React.Component {
 
                         {this.state.editingType === "" &&
                         this.state.creatingType === "" ? (
-                            this.state.isMobile && (
-                                <NavLinks
-                                    isMobile={this.state.isMobile}
-                                    toggleSidebar={this.toggleSidebar}
-                                />
-                            )
+                            this.state.isMobile && <NavLinks 
+                                isMobile={this.state.isMobile} 
+                                toggleSidebar={this.toggleSidebar}
+                            />
                         ) : (
                             <Menu.Item>
                                 <Editor

@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Button, Icon, Grid, Header } from "semantic-ui-react";
+import React from 'react';
+import { Form, Button, Icon, Grid, Header } from 'semantic-ui-react';
 
 export default class SkillsEdit extends React.Component {
     constructor(props) {
@@ -63,7 +63,7 @@ export default class SkillsEdit extends React.Component {
                         <Button
                             onClick={(_) =>
                                 this.props.shiftOrder(
-                                    "skills",
+                                    'skills',
                                     this.props.content,
                                     false
                                 )
@@ -81,7 +81,7 @@ export default class SkillsEdit extends React.Component {
                         <Button
                             onClick={(_) =>
                                 this.props.shiftOrder(
-                                    "skills",
+                                    'skills',
                                     this.props.content,
                                     true
                                 )

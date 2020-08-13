@@ -1,7 +1,7 @@
-import React from "react";
-import { Grid, Card } from "semantic-ui-react";
-import Github from "./Github";
-import SectionHeading from "./SectionHeading";
+import React from 'react';
+import { Grid, Card } from 'semantic-ui-react';
+import Github from './Github';
+import SectionHeading from './SectionHeading';
 
 const Githubs = (props) => {
     if (!props.githubs) {
@@ -17,11 +17,11 @@ const Githubs = (props) => {
                 loggedIn={props.loggedIn}
                 sectionEdit={false}
                 sectionNew={true}
-                startNew={(_) => props.startNew("githubs")}
+                startNew={(_) => props.startNew('githubs')}
                 user={props.user}
             />
 
-            <Grid columns={"equal"} stackable centered>
+            <Grid columns={'equal'} stackable centered>
                 <Grid.Row columns={16}>
                     <Grid.Column width={2}></Grid.Column>
                     <Grid.Column width={12}>

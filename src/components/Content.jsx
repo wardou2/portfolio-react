@@ -1,13 +1,13 @@
-import React from "react";
-import { Grid } from "semantic-ui-react";
-import Nav from "./Nav";
-import NamePicIntro from "./NamePicIntro";
-import AboutMe from "./AboutMe";
-import Contact from "./Contact";
-import Jobs from "./Jobs";
-import Githubs from "./Githubs";
-import Skills from "./Skills";
-import Music from "./Music";
+import React from 'react';
+import { Grid } from 'semantic-ui-react';
+import Nav from './Nav';
+import NamePicIntro from './NamePicIntro';
+import AboutMe from './AboutMe';
+import Contact from './Contact';
+import Jobs from './Jobs';
+import Githubs from './Githubs';
+import Skills from './Skills';
+import Music from './Music'
 
 const Content = (props) => {
     return (
@@ -87,7 +87,7 @@ const Content = (props) => {
             </Grid.Row>
             <Grid.Row key="music" id="music">
                 <Grid.Column>
-                    <Music
+                    <Music 
                         user={props.currentUser}
                         editing={props.editing}
                         startEdit={props.startEdit}
@@ -107,6 +107,7 @@ const Content = (props) => {
                     />
                 </Grid.Column>
             </Grid.Row>
+          
         </Grid>
     );
 };

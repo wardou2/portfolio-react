@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Form, Button } from "semantic-ui-react";
+import React, { Component } from 'react';
+import { Form, Button } from 'semantic-ui-react';
 
 export default class JobEdit extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ export default class JobEdit extends Component {
 
     handleAddSkill = () => {
         const skillsCopy = this.state.content.skills_used;
-        skillsCopy.push("");
+        skillsCopy.push('');
         this.setState({
             content: {
                 ...this.state.content,
@@ -62,7 +62,7 @@ export default class JobEdit extends Component {
 
     handleAddResp = () => {
         const resCopy = this.state.content.responsibilities;
-        resCopy.push("");
+        resCopy.push('');
         this.setState({
             content: {
                 ...this.state.content,
@@ -197,8 +197,8 @@ export default class JobEdit extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveResp(i)}
                             >
-                                {" "}
-                                -{" "}
+                                {' '}
+                                -{' '}
                             </Button>
                         </Form.Group>
                     );
@@ -224,8 +224,8 @@ export default class JobEdit extends Component {
                                 type="button"
                                 onClick={() => this.handleRemoveSkill(i)}
                             >
-                                {" "}
-                                -{" "}
+                                {' '}
+                                -{' '}
                             </Button>
                         </Form.Group>
                     );

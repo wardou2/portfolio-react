@@ -1,10 +1,10 @@
-import React from "react";
-import { render } from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import "semantic-ui-css/semantic.css";
-import * as serviceWorker from "./serviceWorker";
-import ScrollHandler from "./components/ScrollHandler";
-import App from "./App";
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'semantic-ui-css/semantic.css';
+import * as serviceWorker from './serviceWorker';
+import ScrollHandler from './components/ScrollHandler';
+import App from './App';
 
 const RoutedApp = () => (
     <Router>
@@ -15,12 +15,12 @@ const RoutedApp = () => (
 function MainApp() {
     return (
         <ScrollHandler>
-            <App />
+            <App  />
         </ScrollHandler>
     );
 }
 
-render(<RoutedApp />, document.getElementById("root"));
+render(<RoutedApp />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

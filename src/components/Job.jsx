@@ -1,11 +1,12 @@
-import React from "react";
-import { Card, List, Button, Image, Icon } from "semantic-ui-react";
+import React from 'react';
+import { Card, List, Button, Image, Icon } from 'semantic-ui-react';
 
-import { sanitizeArray } from "../util/String";
+import { sanitizeArray} from '../util/String'
 
 const Job = (props) => {
-    const skillsUsed = sanitizeArray(props.job.skills_used);
-    const responsibilities = sanitizeArray(props.job.responsibilities);
+    
+    const skillsUsed = sanitizeArray(props.job.skills_used)
+    const responsibilities = sanitizeArray(props.job.responsibilities)
 
     return (
         <Card raised className="corner-sharp text font-size-medium">
@@ -13,20 +14,20 @@ const Job = (props) => {
                 <Card.Content>
                     <Button
                         onClick={(_) =>
-                            props.shiftOrder("jobs", props.job, false)
+                            props.shiftOrder('jobs', props.job, false)
                         }
                         icon={<Icon name="up arrow" />}
                         size="large"
                     />
                     <Button
                         onClick={(_) =>
-                            props.shiftOrder("jobs", props.job, true)
+                            props.shiftOrder('jobs', props.job, true)
                         }
                         icon={<Icon name="down arrow" />}
                         size="large"
                     />
                     <Button
-                        onClick={(_) => props.startEdit(props.job, "jobs")}
+                        onClick={(_) => props.startEdit(props.job, 'jobs')}
                         floated="right"
                         color="linkedin"
                         icon={<Icon name="edit" />}
@@ -45,10 +46,10 @@ const Job = (props) => {
                 <Card.Header> {props.job.title} </Card.Header>
                 <Card.Meta> {props.job.company} </Card.Meta>
                 <Card.Meta>
-                    {" "}
-                    {props.job.start_month} {props.job.start_year} -{" "}
-                    {props.job.end_month}{" "}
-                    {props.job.end_year ? props.job.end_year : "Present"}
+                    {' '}
+                    {props.job.start_month} {props.job.start_year} -{' '}
+                    {props.job.end_month}{' '}
+                    {props.job.end_year ? props.job.end_year : 'Present'}
                 </Card.Meta>
             </Card.Content>
             {props.job.summary && (

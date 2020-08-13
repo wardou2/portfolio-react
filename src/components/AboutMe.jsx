@@ -1,7 +1,7 @@
-import React from "react";
-import { Grid } from "semantic-ui-react";
+import React from 'react';
+import { Grid } from 'semantic-ui-react';
 
-import SectionHeading from "./SectionHeading";
+import SectionHeading from './SectionHeading';
 
 const AboutMe = (props) => {
     if (!props.user.bio) {
@@ -9,7 +9,7 @@ const AboutMe = (props) => {
             <div>
                 <SectionHeading
                     text="About Me"
-                    startEdit={(_) => props.startEdit(props.user, "users")}
+                    startEdit={(_) => props.startEdit(props.user, 'users')}
                     editing={props.editing}
                     loggedIn={props.loggedIn}
                     sectionEdit={true}
@@ -18,13 +18,13 @@ const AboutMe = (props) => {
             </div>
         );
     }
-    const words = props.user.bio.split(" ");
+    const words = props.user.bio.split(' ');
 
     return (
         <div>
             <SectionHeading
                 text="About Me"
-                startEdit={(_) => props.startEdit(props.user, "users")}
+                startEdit={(_) => props.startEdit(props.user, 'users')}
                 editing={props.editing}
                 loggedIn={props.loggedIn}
                 sectionEdit={true}
@@ -36,7 +36,7 @@ const AboutMe = (props) => {
                     <Grid.Column width={12}>
                         <span className="text">
                             {words.map((word) => {
-                                return word.includes("http://") ? (
+                                return word.includes('http://') ? (
                                     <a
                                         href={word}
                                         target="_blank"

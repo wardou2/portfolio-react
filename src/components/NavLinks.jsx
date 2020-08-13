@@ -5,61 +5,60 @@ import { Link } from "react-router-dom";
 const LINK_DETAILS = [
     {
         name: "ABOUT ME",
-        link: "/#about",
+        link: "/#about"
     },
     {
         name: "SKILLS",
-        link: "/#skills",
+        link: "/#skills"
     },
     {
         name: "JOBS",
-        link: "/#jobs",
+        link: "/#jobs"
     },
     {
         name: "GITHUB",
-        link: "/#github",
+        link: "/#github"
     },
     {
         name: "MUSIC",
-        link: "/#music",
+        link: "/#music"
     },
     {
         name: "CONTACT",
-        link: "/#contact",
+        link: "/#contact"
     },
-];
+]
 
-const getLinks = () =>
-    LINK_DETAILS.map((entry) => (
+const getLinks = () => (
+    LINK_DETAILS.map(entry => (
         <Menu.Item key={entry.name}>
             <Link className="item font-heading" to={entry.link}>
                 {entry.name}
             </Link>
         </Menu.Item>
-    ));
-const getLinksMobile = (toggleSidebar) =>
-    LINK_DETAILS.map((entry) => (
+    ))
+)
+const getLinksMobile = (toggleSidebar) => (
+    LINK_DETAILS.map(entry => (
         <Menu.Item key={entry.name}>
-            <Link
-                className="item font-heading"
-                to={entry.link}
-                onClick={toggleSidebar}
-            >
+            <Link className="item font-heading" to={entry.link} onClick={toggleSidebar}>
                 {entry.name}
             </Link>
         </Menu.Item>
-    ));
+    ))
+)
 
-const NavLinks = ({ isMobile, toggleSidebar }) => {
-    return isMobile ? (
+const NavLinks = ({isMobile, toggleSidebar}) => {
+    return (isMobile ? (
         <Menu borderless secondary vertical fluid>
-            {getLinksMobile(toggleSidebar)}
+           {getLinksMobile(toggleSidebar)}
         </Menu>
     ) : (
         <Menu borderless secondary stackable>
-            {getLinks()}
+           {getLinks()}
         </Menu>
-    );
-};
+    )
+    )
+}
 
 export default NavLinks;

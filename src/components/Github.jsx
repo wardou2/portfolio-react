@@ -1,26 +1,26 @@
-import React from "react";
-import { Card, Image, Button, Divider, List } from "semantic-ui-react";
+import React from 'react';
+import { Card, Image, Button, Divider, List } from 'semantic-ui-react';
 
 const displayLinks = (github) => {
     if (github.repo_url_back && github.demo_url) {
         return (
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: 'center' }}>
                 <a
                     href={github.repo_url_front}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     Front End Repo
-                </a>{" "}
-                |{" "}
+                </a>{' '}
+                |{' '}
                 <a
                     href={github.repo_url_back}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     Back End Repo
-                </a>{" "}
-                |{" "}
+                </a>{' '}
+                |{' '}
                 <a
                     href={github.demo_url}
                     target="_blank"
@@ -33,15 +33,15 @@ const displayLinks = (github) => {
     }
     if (github.repo_url_back) {
         return (
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: 'center' }}>
                 <a
                     href={github.repo_url_front}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     Front End Repo
-                </a>{" "}
-                |{" "}
+                </a>{' '}
+                |{' '}
                 <a
                     href={github.repo_url_back}
                     target="_blank"
@@ -54,15 +54,15 @@ const displayLinks = (github) => {
     }
     if (github.demo_url) {
         return (
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: 'center' }}>
                 <a
                     href={github.repo_url_front}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     Github Repo
-                </a>{" "}
-                |{" "}
+                </a>{' '}
+                |{' '}
                 <a
                     href={github.demo_url}
                     target="_blank"
@@ -74,7 +74,7 @@ const displayLinks = (github) => {
         );
     }
     return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: 'center' }}>
             <a
                 href={github.repo_url_front}
                 target="_blank"
@@ -94,7 +94,7 @@ const Github = (props) => {
                 <Card.Content>
                     <Button
                         onClick={(_) =>
-                            props.shiftOrder("githubs", github, false)
+                            props.shiftOrder('githubs', github, false)
                         }
                         floated="left"
                         size="large"
@@ -102,14 +102,14 @@ const Github = (props) => {
                     />
                     <Button
                         onClick={(_) =>
-                            props.shiftOrder("githubs", github, true)
+                            props.shiftOrder('githubs', github, true)
                         }
                         floated="left"
                         size="large"
                         icon="right arrow"
                     />
                     <Button
-                        onClick={(_) => props.startEdit(github, "githubs")}
+                        onClick={(_) => props.startEdit(github, 'githubs')}
                         floated="right"
                         size="large"
                         icon="edit"
@@ -119,7 +119,7 @@ const Github = (props) => {
             ) : null}
             <Card.Content target="_blank" className="card-height">
                 <Card.Header
-                    style={{ marginBottom: "10px" }}
+                    style={{ marginBottom: '10px' }}
                     textAlign="center"
                 >
                     {github.name}
@@ -127,9 +127,9 @@ const Github = (props) => {
                 <Image
                     size="medium"
                     style={{
-                        display: "block",
-                        margin: "auto",
-                        marginBottom: "10px",
+                        display: 'block',
+                        margin: 'auto',
+                        marginBottom: '10px',
                     }}
                     rounded
                     src={github.img_url}
