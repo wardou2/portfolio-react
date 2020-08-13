@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable prefer-destructuring */
 import "./App.css";
 import React from "react";
 import {
@@ -167,6 +169,7 @@ class App extends React.Component {
                 sidebarVisible: true,
             });
         } else {
+            // eslint-disable-next-line no-alert
             alert("Please log in to edit");
         }
     };
@@ -185,6 +188,7 @@ class App extends React.Component {
                 sidebarVisible: true,
             });
         } else {
+            // eslint-disable-next-line no-alert
             alert(`Please log in to add ${this.state.creatingType}`);
         }
     };
